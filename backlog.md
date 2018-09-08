@@ -1,4 +1,4 @@
-# h1 USER STORIES 
+# USER STORIES 
 In priority:
 
 1.As a user, I want to be able to READ content without being registered.		Est. 5
@@ -19,7 +19,7 @@ In priority:
 
 User stories are distributed in blocks that are connected to the same area.
 
-# h1 REQUIREMENTS
+# REQUIREMENTS
 
 ## Functional:
 
