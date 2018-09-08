@@ -1,4 +1,4 @@
-USER STORIES 
+#USER STORIES 
 In priority:
 
 1.As a user, I want to be able to READ content without being registered.		Est. 5
@@ -19,7 +19,7 @@ In priority:
 
 User stories are distributed in blocks that are connected to the same area.
 
-REQUIREMENTS
+#REQUIREMENTS
 
 Functional:
 
@@ -31,8 +31,6 @@ The system should be able to register new users.
 It allows the registered users to post stories, comments, upvote content and accumulate “karma points”.
 It allows all registered users to upvote content and report content for spam.
 The system allows only registered users with sufficient karma points to downvote content.
-
-
 
 
 
