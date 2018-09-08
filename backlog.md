@@ -4,15 +4,21 @@ In priority:
 1.As a user, I want to be able to READ content without being registered.		Est. 5
 
 2.1.As a user, I want to register.	Est.3
+
 2.2.As a registered user, I want to Login.		Est.3
 
 3.1.As a registered user, I want to create posts.	Est.4
+
 3.2.As a registered user, I want to comment on posts.	Est.3,5
+
 3.3.As a registered user, I want to comment on comments.	Est.3,5
 
 4.1.As a registered user, I want to upvote content.	Est.2,5
+
 4.2.As a registered user, I want to be able to accumulate karma points(calculation of up and downvotes on content).	 Est.4
+
 4.3.As a registered user, I want to unlock “downvote” ability at 500 “karma points” (will be lost if below 500 points again). 	 Est.3
+
 4.4.As a registered user with over 500 karma points, I want to be able to downvote content (If karma => 500). 		 Est.3,5
 
 5.As a registered user, I want to be able to mark content as spam. Est.5
