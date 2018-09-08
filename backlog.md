@@ -1,4 +1,4 @@
-#USER STORIES 
+# h1 USER STORIES 
 In priority:
 
 1.As a user, I want to be able to READ content without being registered.		Est. 5
@@ -19,9 +19,9 @@ In priority:
 
 User stories are distributed in blocks that are connected to the same area.
 
-#REQUIREMENTS
+# h1 REQUIREMENTS
 
-Functional:
+## Functional:
 
 The system should be able to connect to an API.
 
@@ -34,7 +34,7 @@ The system allows only registered users with sufficient karma points to downvote
 
 
 
-Non-functional:
+## Non-functional:
 
 User interface is in English.
 User interface has different color themes.
