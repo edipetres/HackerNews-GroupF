@@ -1,4 +1,4 @@
 # HackerNewsG7
 
-Members: Plamen, Emil, Edmond, Zygi
+Members: Plamen, Emil, Edmond, Zygi, Florent
 
