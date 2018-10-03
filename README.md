@@ -18,8 +18,6 @@
 
 ## Tool stack
 
-See pipeline in CircleCI [here](https://circleci.com/gh/edipetres/HackerNewsG7)
-
 | Service         | Tool                   | Comment                                           |
 |-----------------|------------------------|---------------------------------------------------|
 | Frontend        | Vue.js                 |                                                   |
@@ -30,6 +28,8 @@ See pipeline in CircleCI [here](https://circleci.com/gh/edipetres/HackerNewsG7)
 | Database        | Mongodb                | https://mlab.com/                                 |
 
 ## CI/CD pipeline
+
+See pipeline in CircleCI [here](https://circleci.com/gh/edipetres/HackerNewsG7)
 
 1. [x] Checkout code from Github
 2. [ ] Run tests
