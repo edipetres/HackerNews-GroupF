@@ -11,7 +11,7 @@ In priority:
 
 3.2.As a registered user, I want to comment on posts.	Est.3,5
 
-3.3.As a registered user, I want to comment on comments.	Est.3,5
+3.3.As a registered user, I want to comment on comments.	Est.3,5 (OBSOLETE)
 
 4.1.As a registered user, I want to upvote content.	Est.2,5
 
