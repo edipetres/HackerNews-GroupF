@@ -59,7 +59,10 @@ jobs:
           name: Install awscli
           command: sudo pip install awscli
       
-      - run: ls -l
+      - attach_workspace:
+          at: ~/workspace
+
+      - run: cd ~/workspace && ls -l
 
 workflows:
   version: 2
