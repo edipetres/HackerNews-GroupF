@@ -42,7 +42,7 @@ jobs:
       # run tests!
       # - run: npm run test
 
-      run: zip -r dist.zip ./dist
+      - run: zip -r dist.zip ./dist
 
       - persist_to_workspace:
           root: ~/
