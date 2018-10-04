@@ -62,7 +62,13 @@ jobs:
       - attach_workspace:
           at: ~/workspace
 
-      - run: cd ~/workspace && ls -l
+      - run:
+          name: Unzip dist folder
+          command: unzip ~/workspace/dist.zip
+
+      - run:
+          name: Deploy to S3
+          command: aws s3 cp ~/workspace/dist s3://hackernews-group7/ --recursive
 
 workflows:
   version: 2
