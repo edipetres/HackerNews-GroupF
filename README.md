@@ -2,6 +2,7 @@
 
 ## Table of Contents  
 [Group members](#group-members)  
+[How to run the project](#how-to-run-the-project)
 [Tool stack](#tool-stack)  
 [CI/CD pipeline](#ci/cd-pipeline)  
 [Database schema](#database-schema)  
@@ -15,6 +16,43 @@
 | Edmond     | edipetres@gmail.com      |
 | Emil       | emilklausen2@hotmail.com |
 | Zygimantas | pr.zygimantas@gmail.com  |
+
+## How to run the project
+
+### Install dependencies
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Run your end-to-end tests
+```
+npm run test:e2e
+```
+
+### Run your unit tests
+```
+npm run test:unit
+```
 
 ## Tool stack
 
