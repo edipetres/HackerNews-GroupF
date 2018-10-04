@@ -68,7 +68,7 @@ jobs:
 
       - run:
           name: Deploy to S3
-          command: aws s3 cp ~/workspace/dist s3://hackernews-group7/ --recursive
+          command: aws s3 cp ~/workspace/dist s3://$S3_BUCKET_NAME/ --recursive
 
 workflows:
   version: 2
