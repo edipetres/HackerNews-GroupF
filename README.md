@@ -79,4 +79,7 @@ See pipeline in CircleCI [here](https://circleci.com/gh/edipetres/HackerNewsG7)
 
 We drafted the following sketch for the database schema for our MongoDB.
 
+Notes:
+1. Add `title` to Post schema
+
 ![db sketch](/docs/db-schema-sketch.jpeg)

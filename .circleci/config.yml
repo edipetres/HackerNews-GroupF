@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: circleci/node:8.12.0
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -26,7 +26,13 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn install
+      - run: 
+          name: Install dependencies
+          command: npm install
+
+      - run: 
+          name: Build production code
+          command: npm run build
 
       - save_cache:
           paths:
@@ -34,4 +40,41 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      - run: yarn test
+      # - run: npm run test
+
+      - run: zip -r dist.zip ./dist
+
+      - persist_to_workspace:
+          root: /home/circleci/repo
+          paths:
+            - dist.zip
+
+  deploy:
+    docker:
+      # specify the version you desire here
+      - image: circleci/python:2.7-jessie
+
+    steps:
+      - run:
+          name: Install awscli
+          command: sudo pip install awscli
+      
+      - attach_workspace:
+          at: ~/workspace
+
+      - run:
+          name: Unzip dist folder
+          command: unzip ~/workspace/dist.zip -d ~/workspace
+
+      - run:
+          name: Deploy to S3
+          command: aws s3 cp ~/workspace/dist s3://$S3_BUCKET_NAME/ --recursive
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
