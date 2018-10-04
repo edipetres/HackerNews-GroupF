@@ -45,7 +45,7 @@ jobs:
       - run: zip -r dist.zip ./dist
 
       - persist_to_workspace:
-          root: ~/
+          root: /home/circleci/repo
           paths:
             - dist.zip
 
