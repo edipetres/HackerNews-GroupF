@@ -51,6 +51,7 @@ jobs:
             - app.js # main file for the server
             - server/* # all other server files
             - .elasticbeanstalk/config.yml # EB configuration
+            - .elasticbeanstalk/config.yml
 
   deploy:
     docker:
@@ -76,10 +77,14 @@ jobs:
       - run:
           name: Deploy frontend to AWS S3
           command: aws s3 cp dist s3://$S3_BUCKET_NAME/ --recursive
-        
+      
+      - checkout
+
       - run:
           name: Deploy backend to AWS Elastic Beanstalk
-          command: eb deploy HackernewsBackend-env
+          command: |
+            cd ~/repo
+            eb deploy
 
 workflows:
   version: 2
