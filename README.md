@@ -112,7 +112,7 @@ Express.js powers our backend API which is deployed to Elastic Beanstalk.
 
 First we manually created an application on EB and a Node.js environment. Using the aws-cli tool we configured the project locally to deploy to this environment (using `eb init`) - this configuration can be found [here](.elasticbeanstalk/config.yml). We commit this configuration file which allows the CI chain to know where to deploy the app when running the `eb deploy` command.
 
-Public IP for our backend API: [52.28.201.249:3000](52.28.201.249:3000)
+Public IP for our backend API: http://52.28.201.249:3000/
 
 #### Note
 
