@@ -47,9 +47,10 @@ jobs:
       - persist_to_workspace:
           root: /home/circleci/repo
           paths:
-            - dist.zip
-            - app.js
-            - server/*
+            - dist.zip # packaged frontend code
+            - app.js # main file for the server
+            - server/* # all other server files
+            - .elasticbeanstalk/config.yml # EB configuration
 
   deploy:
     docker:
