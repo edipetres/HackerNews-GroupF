@@ -45,13 +45,9 @@ jobs:
       - run: zip -r dist.zip ./dist
 
       - persist_to_workspace:
-          root: /home/circleci/repo
+          root: ~/repo
           paths:
             - dist.zip # packaged frontend code
-            - app.js # main file for the server
-            - server/* # all other server files
-            - .elasticbeanstalk/config.yml # EB configuration
-            - .elasticbeanstalk/config.yml
 
   deploy:
     docker:
@@ -85,7 +81,6 @@ jobs:
       - run:
           name: Deploy backend to AWS Elastic Beanstalk
           command: eb deploy
-          working_directory: ~/repo  
 
 workflows:
   version: 2
