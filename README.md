@@ -87,6 +87,8 @@ Both our back and frontend code lives in this project, but they are deployed to 
 
 After the CI chain builds the static frontend files it uploads them to an S3 bucket. This bucket is configured for Static Website Hosting. It does that by serving the `index.html` file at the root of the bucket.
 
+Public endpoint for the frontend: http://hackernews-group7.s3-website.eu-central-1.amazonaws.com/
+
 #### Note
 
 It is important to add the following Policy to the bucket to allow public access to all files - this way everyone on the internet can access our website. Without this policy you will get a `403 Access Forbidden` error when navigating to the URL endpoint.
@@ -109,6 +111,8 @@ It is important to add the following Policy to the bucket to allow public access
 Express.js powers our backend API which is deployed to Elastic Beanstalk.
 
 First we manually created an application on EB and a Node.js environment. Using the aws-cli tool we configured the project locally to deploy to this environment (using `eb init`) - this configuration can be found [here](.elasticbeanstalk/config.yml). We commit this configuration file which allows the CI chain to know where to deploy the app when running the `eb deploy` command.
+
+Public IP for our backend API: [52.28.201.249:3000](52.28.201.249:3000)
 
 #### Note
 
