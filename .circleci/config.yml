@@ -79,7 +79,7 @@ jobs:
         
       - run:
           name: Deploy backend to AWS Elastic Beanstalk
-          command: eb deploy
+          command: eb deploy HackernewsBackend-env
 
 workflows:
   version: 2
