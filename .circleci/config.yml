@@ -48,12 +48,16 @@ jobs:
           root: /home/circleci/repo
           paths:
             - dist.zip
+            - app.js
+            - server/*
 
   deploy:
     docker:
       # specify the version you desire here
       - image: circleci/python:2.7-jessie
 
+    working_directory: ~/workspace
+    
     steps:
       - run:
           name: Install awscli
@@ -63,12 +67,16 @@ jobs:
           at: ~/workspace
 
       - run:
-          name: Unzip dist folder
+          name: Unpackage frontend code
           command: unzip ~/workspace/dist.zip -d ~/workspace
 
       - run:
-          name: Deploy to S3
+          name: Deploy frontend to AWS S3
           command: aws s3 cp ~/workspace/dist s3://$S3_BUCKET_NAME/ --recursive
+        
+      - run:
+          name: Deploy backend to AWS Elastic Beanstalk
+          command: eb deploy
 
 workflows:
   version: 2
