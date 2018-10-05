@@ -58,9 +58,11 @@ jobs:
       # specify the version you desire here
       - image: circleci/python:2.7-jessie
 
-    working_directory: ~/workspace
+    working_directory: ~/repo
     
     steps:
+      - checkout
+
       - run:
           name: Install awscli and awsebcli
           command: |
@@ -73,18 +75,17 @@ jobs:
       - run:
           name: Unpackage frontend code
           command: unzip dist.zip
+          working_directory: ~/workspace
 
       - run:
           name: Deploy frontend to AWS S3
           command: aws s3 cp dist s3://$S3_BUCKET_NAME/ --recursive
-      
-      - checkout
+          working_directory: ~/workspace
 
       - run:
           name: Deploy backend to AWS Elastic Beanstalk
-          command: |
-            cd ~/repo
-            eb deploy
+          command: eb deploy
+          working_directory: ~/repo  
 
 workflows:
   version: 2
