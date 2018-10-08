@@ -8,8 +8,6 @@ import config from './config'
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios.create({baseURL: process.env.NODE_ENV == 'development' ? config.apiUrl.dev : config.apiUrl.prod}); // using The Ternary Operator
 
-console.log('env', process.env.NODE_ENV)
-
 new Vue({
   router,
   store,
