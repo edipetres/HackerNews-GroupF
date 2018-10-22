@@ -63,7 +63,7 @@ npm run test:unit
 | Backend         | Node.js, Express.js |                                                   |
 | CI/CD pipeline  | CircleCI               | https://circleci.com/gh/edipetres/HackerNewsG7    |
 | Version Control | Github                 | https://github.com/edipetres/HackerNewsG7         |
-| Deployment      | Digital Oceal          | Both back and front-end lives in the same project |
+| Deployment      | Digital Ocean          | Both back and front-end lives in the same project |
 | Database        | Mongodb                | https://mlab.com/                                 |
 
 ## CI/CD pipeline
