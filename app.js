@@ -9,6 +9,7 @@ const status = require('./server/status')
 const posts = require('./server/posts')
 
 if (process.env.NODE_ENV !== 'production') {
+  console.info('Loading dotenv')
   require('dotenv').load();
 }
 
