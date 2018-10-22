@@ -26,8 +26,16 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development (back and frontend)
+Start the frontend and backend from two separate terminals by typing
+
 ```
-npm start
+npm start:backend
+```
+
+and
+
+```
+npm start:frontend
 ```
 
 ### Compiles and minifies for production
