@@ -1,7 +1,8 @@
+require('./model')
 const mongoose = require( "mongoose" );
 
 const Article = mongoose.model( "Article" );
-const User = mongoose.model( "User" );
+// const User = mongoose.model( "User" );
 
 const createArticle = async ( user, data ) => {
     const { id } = user;
