@@ -17,7 +17,7 @@
     </tr>
     <tr class="article-info">
       <td colspan="2"></td>
-      <td>{{ data.votes }} points by {{ data.user.userName }} {{ data.dateAdded }} | hide | {{ data.commentCount }} comments </td>
+      <td style="padding-top: 2px;">{{ data.votes }} points by {{ data.user.userName }} {{ data.dateAdded }} | hide | {{ data.commentCount }} comments </td>
     </tr>
     <tr class="spacer" style="height:5px"></tr>
   </div>
@@ -68,6 +68,7 @@ tr {
 
   .article-info {
     font-size: 9px;
+    padding-top: 2px !important;
   }
 }
 
