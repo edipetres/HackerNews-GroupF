@@ -1,3 +1,5 @@
+const logger = console
+
 const customResponses = {
   success(payload) {
     return this.status(200).json({
@@ -14,9 +16,12 @@ const customResponses = {
   },
 
   preconditionFailed(customError) {
+    const errorMessage = customError || "precondition_failed"
+    logger.error('Precondition failed:', errorMessage)
+    
     return this.status(412).json({
       success: false,
-      error: customError || "precondition_failed",
+      error: errorMessage
     });
   },
 

@@ -24,6 +24,8 @@ const router = express.Router( );
 */
 router.post( "/registration", controller.register );
 
+router.post('/login', controller.login)
+
 /**
 *    @apiGroup User
 *    @api {put} /edit Edit the profile and filtering options.
