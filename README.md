@@ -1,5 +1,7 @@
 # HackerNews project - Group 7
 
+[![CircleCI](https://circleci.com/gh/edipetres/HackerNewsG7.svg?style=svg)](https://circleci.com/gh/edipetres/HackerNewsG7)
+
 ## Table of Contents  
 [Group members](#group-members)  
 [How to run the project](#how-to-run-the-project)
