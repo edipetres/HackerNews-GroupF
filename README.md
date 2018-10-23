@@ -2,6 +2,10 @@
 
 [![CircleCI](https://circleci.com/gh/edipetres/HackerNewsG7.svg?style=svg)](https://circleci.com/gh/edipetres/HackerNewsG7)
 
+
+[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=website)](http://hackernews-group7.s3-website.eu-central-1.amazonaws.com/#/)
+
+
 ## Table of Contents  
 [Group members](#group-members)  
 [How to run the project](#how-to-run-the-project)
@@ -23,47 +27,52 @@
 ## How to run the project
 
 ### Install dependencies
-```
+
+```sh
 npm install
 ```
 
 ### Compiles and hot-reloads for development (back and frontend)
-Start the frontend and backend from two separate terminals by typing
 
-```
-npm start:backend
+```sh
+npm start
 ```
 
-and
-
-```
-npm start:frontend
-```
+<details>
+<summary>Other Commands</summary>
 
 ### Compiles and minifies for production
-```
+
+```sh
 npm run build
 ```
 
 ### Run your tests
-```
+
+```sh
 npm run test
 ```
 
 ### Lints and fixes files
-```
+
+```sh
 npm run lint
 ```
 
 ### Run your end-to-end tests
-```
+
+```sh
 npm run test:e2e
 ```
 
 ### Run your unit tests
-```
+
+```sh
 npm run test:unit
 ```
+
+</details>
+
 
 ## Tool stack
 
