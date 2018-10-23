@@ -31,4 +31,4 @@ app.use('/posts', posts)
 
 
 const logger = console
-app.listen(port, () => logger.log(`Example app listening on port ${port}!`))
+app.listen(port, () => logger.log(`REST API listening on port ${port}!`))
