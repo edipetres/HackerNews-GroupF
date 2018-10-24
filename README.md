@@ -1,5 +1,11 @@
 # HackerNews project - Group 7
 
+[![CircleCI](https://circleci.com/gh/edipetres/HackerNewsG7.svg?style=svg)](https://circleci.com/gh/edipetres/HackerNewsG7)
+
+
+[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=website)](http://hackernews-group7.s3-website.eu-central-1.amazonaws.com/#/)
+
+
 ## Table of Contents  
 [Group members](#group-members)  
 [How to run the project](#how-to-run-the-project)
@@ -21,39 +27,52 @@
 ## How to run the project
 
 ### Install dependencies
-```
+
+```sh
 npm install
 ```
 
 ### Compiles and hot-reloads for development (back and frontend)
-```
+
+```sh
 npm start
 ```
 
+<details>
+<summary>Other Commands</summary>
+
 ### Compiles and minifies for production
-```
+
+```sh
 npm run build
 ```
 
 ### Run your tests
-```
+
+```sh
 npm run test
 ```
 
 ### Lints and fixes files
-```
+
+```sh
 npm run lint
 ```
 
 ### Run your end-to-end tests
-```
+
+```sh
 npm run test:e2e
 ```
 
 ### Run your unit tests
-```
+
+```sh
 npm run test:unit
 ```
+
+</details>
+
 
 ## Tool stack
 
@@ -78,6 +97,16 @@ Find the pipeline configuration file [here](.circleci/config.yml)
 4. [x] Deploy frontend to AWS S3
 5. [x] Deploy backend API to AWS ElasticBeanstalk
 6. [ ] Release version on Github? - we haven't decided if we want to do this manually, or to be part of the pipeline.
+
+### Environment variables
+
+Set these environment variables in the CircleCI pipeline settings
+
+| Key | Value |
+|-|-|
+| AWS_ACCESS_KEY_ID | xxxxAVCQ|
+| AWS_SECRET_ACCESS_KEY | xxxxnnLR |
+| S3_BUCKET_NAME | xxxxoup7 |
 
 ## Deployment
 

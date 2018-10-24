@@ -13,8 +13,8 @@ router.get('/', function (req, res) {
         userId: 1
       },
       articleUrl: 'www.facebook.com',
-      votes: 5555,
-      commentCount: 1000
+      votes: 188,
+      commentCount: 13
     },
     {
       id: 2,
@@ -26,8 +26,8 @@ router.get('/', function (req, res) {
       },
       userId: 2,
       articleUrl: 'www.google.com',
-      votes: 6666,
-      commentCount: 1000
+      votes: 39,
+      commentCount: 56
     },
     {
       id: 3,
@@ -39,8 +39,8 @@ router.get('/', function (req, res) {
       },
       userId: 3,
       articleUrl: 'www.google.com',
-      votes: 7777,
-      commentCount: 1000
+      votes: 96,
+      commentCount: 33
     },
     {
       id: 4,
@@ -52,8 +52,8 @@ router.get('/', function (req, res) {
       },
       userId: 4,
       articleUrl: 'www.google.com',
-      votes: 8888,
-      commentCount: 1000
+      votes: 48,
+      commentCount: 3
     },
     {
       id: 5,
@@ -65,8 +65,8 @@ router.get('/', function (req, res) {
       },
       userId: 5,
       articleUrl: 'www.google.com',
-      votes: 9999,
-      commentCount: 1000
+      votes: 78,
+      commentCount: 155
     },
   ]
 
