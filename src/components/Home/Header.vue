@@ -14,7 +14,9 @@
           <a href="#">jobs</a> |
           <a href="#">submit</a>
         </td>
-        <td style="text-align:right;padding-right:4px;">login</td>
+        <td style="text-align:right;padding-right:4px;">
+          <router-link to="/login">Login</router-link>
+        </td>
       </tr>
     </tbody>
   </table>
