@@ -3,12 +3,21 @@ const repository = require( "./repository" );
 
 exports.create = async( req, res ) => {
     try {
-        const { user } = req;
-        const story = await repository.createStory( user, req.body );
+        //const story = new Story();
+        const story = req.body
+        story.title = req.body.post_title
+        story.content = req.body.post_text
+        story.storyId = req.body.hanesst_id
+        story.author_id = req.body.username
+        story.url = req.body.post_url
+        story.voteCount = 0
+        console.log(story)
+        const savedStory = await repository.createStory( story );
+        console.log(savedStory.title + "Was succesfully create ")
         res.success( utilities.extractObject(
-        story,
-        [ "id", "title", "body" ],
-    ) );
+        savedStory,
+        [ "title"],
+        ) );
     } catch ( err ) {
         res.send( err );
     }

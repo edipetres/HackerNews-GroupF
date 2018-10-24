@@ -6,7 +6,7 @@ const port = 3000
 const customResponses = require('./server/middlewares/customResponses')
 
 const status = require('./server/status')
-const posts = require('./server/posts')
+// const posts = require('./server/posts')
 
 if (process.env.NODE_ENV !== 'production') {
   console.info('Loading dotenv')
@@ -27,7 +27,7 @@ require('./server/app/index')(app) // Initialize router
 
 app.get('/', (req, res) => res.send('Hello World is deployed by the CI chain!'))
 app.use('/status', status)
-app.use('/posts', posts)
+// app.use('/posts', posts)
 
 
 const logger = console

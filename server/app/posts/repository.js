@@ -1,16 +1,13 @@
 require('./model')
+require('../users/model')
 const mongoose = require( "mongoose" );
 
 const Story = mongoose.model( "Story" );
-// const User = mongoose.model( "User" );
+const User = mongoose.model( "User" );
 
-const createStory = async ( user, data ) => {
-    const { id } = user;
-
+const createStory = async ( data ) => {
     const story = new Story( data );
-    story.authorId = await User.findOne( { id } );
-    const query = await story.save();
-    return query;
+    return story.save();
 };
 
 const findStory = () => Story.find( );

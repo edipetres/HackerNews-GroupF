@@ -7,13 +7,12 @@ const storySchema = new Schema({
     type: String,
     required: true
   },
-  storyid: {
+  storyId: {
     type: Number,
     required: true
   },
   content: {
-    type: String,
-    required: true
+    type: String
   },
   authorId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -23,12 +22,16 @@ const storySchema = new Schema({
     type: String,
     required: true
   },
-  votecount: {
+  voteCount: {
     type: Number,
     required: true
   }
 }, {
   timestamps: true,
 });
+
+storySchema.methods.setTitle = function (title){
+
+} 
 
 module.exports = mongoose.model("Story", storySchema);
