@@ -4,9 +4,9 @@ const repository = require( "./repository" );
 exports.create = async( req, res ) => {
     try {
         const { user } = req;
-        const article = await repository.createArticle( user, req.body );
+        const story = await repository.createStory( user, req.body );
         res.success( utilities.extractObject(
-        article,
+        story,
         [ "id", "title", "body" ],
     ) );
     } catch ( err ) {
@@ -24,8 +24,8 @@ exports.delete = ( req, res ) => {
 
 exports.list = async ( req, res ) => {
     try {
-        const articles = await repository.findArticles();
-        res.success( articles );
+        const story = await repository.findStory();
+        res.success( story );
     } catch ( err ) {
         res.send( err );
     }
