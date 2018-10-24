@@ -3,8 +3,8 @@ const repository = require( "./repository" );
 
 exports.create = async( req, res ) => {
     try {
-        //const story = new Story();
-        const story = req.body
+        let story = {};
+        //const story = req.body
         story.title = req.body.post_title
         story.content = req.body.post_text
         story.storyId = req.body.hanesst_id
