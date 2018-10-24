@@ -3,12 +3,21 @@ const repository = require( "./repository" );
 
 exports.create = async( req, res ) => {
     try {
-        const { user } = req;
-        const article = await repository.createArticle( user, req.body );
+        let story = {};
+        //const story = req.body
+        story.title = req.body.post_title
+        story.content = req.body.post_text
+        story.storyId = req.body.hanesst_id
+        story.author_id = req.body.username
+        story.url = req.body.post_url
+        story.voteCount = 0
+        console.log(story)
+        const savedStory = await repository.createStory( story );
+        console.log(savedStory.title + "Was succesfully create ")
         res.success( utilities.extractObject(
-        article,
-        [ "id", "title", "body" ],
-    ) );
+        savedStory,
+        [ "title"],
+        ) );
     } catch ( err ) {
         res.send( err );
     }
@@ -24,8 +33,8 @@ exports.delete = ( req, res ) => {
 
 exports.list = async ( req, res ) => {
     try {
-        const articles = await repository.findArticles();
-        res.success( articles );
+        const story = await repository.findStory();
+        res.success( story );
     } catch ( err ) {
         res.send( err );
     }

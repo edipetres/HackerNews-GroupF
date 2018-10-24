@@ -1,24 +1,21 @@
 require('./model')
+require('../users/model')
 const mongoose = require( "mongoose" );
 
-const Article = mongoose.model( "Article" );
-// const User = mongoose.model( "User" );
+const Story = mongoose.model( "Story" );
+const User = mongoose.model( "User" );
 
-const createArticle = async ( user, data ) => {
-    const { id } = user;
-
-    const article = new Article( data );
-    article.authorId = await User.findOne( { id } );
-    const query = await article.save();
-    return query;
+const createStory = async ( data ) => {
+    const story = new Story( data );
+    return story.save();
 };
 
-const findArticles = () => Article.find( );
+const findStory = () => Story.find( );
 
-const findDetails = ( id ) => Article.findOne( { _id: id } );
+const findDetails = ( id ) => Story.findOne( { _id: id } );
 
 module.exports = {
-    createArticle,
-    findArticles,
+    createStory,
+    findStory,
     findDetails,
 };
