@@ -70,7 +70,7 @@ router.get('/', function (req, res) {
     },
   ]
 
-  res.json(hardcodedPosts)
+  res.json(hardcodedComments)
 })
 
 module.exports = router
