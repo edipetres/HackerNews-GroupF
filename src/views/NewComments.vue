@@ -1,57 +1,44 @@
+
 <template>
-  <center>
-    <div class="home">
-      <table border="0" cellpadding="0" cellspacing="0" width="85%" bgcolor="#f6f6ef">
-        <tbody>
-          <tr class="header-line">
-            <td bgcolor="#ff6600">
-              <Header/>
-            </td>
-          </tr>
-          <tr style="height:10px"></tr>
-          <tr>
-            <td>
-              <table border="0" cellpadding="0" cellspacing="0" class="itemlist">
-                <Article v-for="(article, index) in articles" v-bind:key="index" :data="article" :index="index"></Article>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </center>
+    <tr>
+      <td>
+        <table>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </td>
+    </tr>
 </template>
 
 <script>
 // @ is an alias to /src
 import Header from '@/components/Home/Header.vue'
-import Article from '@/components/Home/Article.vue'
 
 export default {
-  name: 'home',
+  name: 'NewComments',
   components: {
-    Header,
-    Article
+    Header
   },
   data: function() {
     return {
-      articles: []
+        
     }
   },
   created() {
-    this.fetchArticles();
+      
   },
   methods: {
-    fetchArticles() {
+    fetchComments() {
       const vm = this
-      this.$http.get('/posts')
+      this.$http.get('/newcomments')
         .then(function (response) {
           // handle success
-          vm.articles = response.data
+          vm.comments = response.data
         })
         .catch(function (error) {
           // handle error
-          alert('Error loading articles from server.', error)
+          alert('Error loading newcomments from server.', error)
         })
         .then(function () {
           // always executed

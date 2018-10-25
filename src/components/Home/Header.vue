@@ -8,7 +8,7 @@
         <td>
           <span class="header-title">Hacker News</span>
           <a href="#">new</a> |
-          <router-link to="/comments">comments</router-link> |
+          <router-link to="/newcomments">comments</router-link> |
           <a href="#">show</a> |
           <a href="#">ask</a> |
           <a href="#">jobs</a> |
