@@ -1,7 +1,6 @@
 # HackerNews project - Group 7
 
-[![CircleCI](https://circleci.com/gh/edipetres/HackerNewsG7.svg?style=svg)](https://circleci.com/gh/edipetres/HackerNewsG7)
-
+[![CircleCI](https://circleci.com/gh/edipetres/HackerNews-GroupF.svg?style=svg)](https://circleci.com/gh/edipetres/HackerNewsG7)
 
 [![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=website)](http://hackernews-group7.s3-website.eu-central-1.amazonaws.com/#/)
 
