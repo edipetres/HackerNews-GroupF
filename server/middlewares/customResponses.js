@@ -61,7 +61,8 @@ const customResponses = {
     });
   },
 
-  serverError() {
+  serverError(error) {
+    logger.error(error)
     return this.status(503).json({
       success: false,
       error: "server_error",

@@ -7,10 +7,6 @@ const commentSchema = new Schema({
         type: String,
         required: true
     },
-    commentId: {
-        type: Number,
-        required: true
-    },
     parentId: {
         type: Number,
         required: true
@@ -27,3 +23,5 @@ const commentSchema = new Schema({
     {
         timestamps: true,
 })
+
+module.exports = mongoose.model("Comment", commentSchema);

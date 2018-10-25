@@ -1,8 +1,9 @@
-const postsRouter = require('./posts/router')
-const usersRouter = require('./users/router')
+const usersRouter = require('./user/router')
+const postRouter = require('./post/router')
+const commentRouter = require('./comment/router')
 
 module.exports = ( app ) => {
-  // app.use( "/session", sessionRouter );
   app.use( "/users", usersRouter );
-  app.use( "/posts", postsRouter );
+  app.use( "/post", postRouter );
+  app.use( "/comment", commentRouter );
 };

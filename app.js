@@ -2,14 +2,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
+let logger = console
 
 const customResponses = require('./server/middlewares/customResponses')
 
 const status = require('./server/status')
-const posts = require('./server/posts')
+const post = require('./server/app/post/router')
 
 if (process.env.NODE_ENV !== 'production') {
-  console.info('Loading dotenv')
+  logger.info('Loading dotenv')
   require('dotenv').load();
 }
 
@@ -22,8 +23,6 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json())
 app.use(customResponses)
 
-app.use('/posts', posts)
-
 require('./server/config/mongoose')(app) // Initialize mongoDB
 require('./server/app/index')(app) // Initialize router
 
@@ -31,5 +30,4 @@ app.get('/', (req, res) => res.send('Hello World is deployed by the CI chain!'))
 app.use('/status', status)
 
 
-const logger = console
 app.listen(port, () => logger.log(`REST API listening on port ${port}!`))

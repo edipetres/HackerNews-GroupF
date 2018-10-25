@@ -1,5 +1,5 @@
 require('./model')
-require('../users/model')
+require('../user/model')
 const mongoose = require( "mongoose" );
 
 const Story = mongoose.model( "Story" );

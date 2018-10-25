@@ -30,8 +30,8 @@ const storySchema = new Schema({
   timestamps: true,
 });
 
-storySchema.methods.setTitle = function (title){
+// storySchema.methods.setTitle = function (title){
 
-} 
+// } 
 
 module.exports = mongoose.model("Story", storySchema);
