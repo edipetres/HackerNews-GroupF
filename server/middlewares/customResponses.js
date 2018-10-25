@@ -8,10 +8,11 @@ const customResponses = {
     });
   },
 
-  unauthorized() {
+  unauthorized(errorMessage) {
     return this.status(401).json({
       success: false,
       error: "unauthorized",
+      errorMessage
     });
   },
 

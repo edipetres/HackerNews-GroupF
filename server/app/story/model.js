@@ -20,7 +20,6 @@ const storySchema = new Schema({
   },
   url: {
     type: String,
-    required: true
   },
   voteCount: {
     type: Number,

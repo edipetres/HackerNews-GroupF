@@ -1,6 +1,5 @@
 
 require( "./model" );
-// const validateToken = require( "../../middlewares/validateToken" );
 const controller = require( "./controller" );
 
 const express = require( "express" );

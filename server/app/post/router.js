@@ -4,6 +4,7 @@ const storyController = require('../story/controller')
 const commentController = require('../comment/controller')
 
 // Distribute incoming posts
+// Endpoint: website.com/post
 router.post('/', (req, res) => {
   const post = req.body
 
