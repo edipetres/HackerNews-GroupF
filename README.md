@@ -1,7 +1,6 @@
 # HackerNews project - Group 7
 
-[![CircleCI](https://circleci.com/gh/edipetres/HackerNewsG7.svg?style=svg)](https://circleci.com/gh/edipetres/HackerNewsG7)
-
+[![CircleCI](https://circleci.com/gh/edipetres/HackerNews-GroupF.svg?style=svg)](https://circleci.com/gh/edipetres/HackerNewsG7)
 
 [![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=website)](http://hackernews-group7.s3-website.eu-central-1.amazonaws.com/#/)
 
@@ -84,6 +83,8 @@ npm run test:unit
 | Version Control | Github                 | https://github.com/edipetres/HackerNewsG7         |
 | Deployment      | Digital Ocean          | Both back and front-end lives in the same project |
 | Database        | Mongodb                | https://mlab.com/                                 |
+|  | Backend Template Project              | [express-mongo-example](https://github.com/FortechRomania/express-mongo-example-project/blob/master/src/app/users/router.js) |
+| | Keys, env vars, credentials and how-tos  | [Google docs](https://docs.google.com/document/d/1N4INXHLhk8Y1QuXl42DNHAigksTOLjEuTCz06kRt8Zw/edit) | 
 
 ## CI/CD pipeline
 
