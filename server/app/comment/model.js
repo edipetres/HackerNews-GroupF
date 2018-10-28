@@ -6,7 +6,7 @@ const commentSchema = new Schema({
         type: String,
         required: true
     },
-    parentId: {
+    hanesstId: {
         type: Number,
         required: true
     },

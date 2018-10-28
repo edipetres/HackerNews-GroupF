@@ -25,6 +25,7 @@ app.use(customResponses)
 
 require('./server/config/mongoose')(app) // Initialize mongoDB
 require('./server/app/index')(app) // Initialize router
+app.use('/latest', require('./server/app/digest/router'))
 
 app.get('/', (req, res) => res.send('Hello World is deployed by the CI chain!'))
 app.use('/status', status)
