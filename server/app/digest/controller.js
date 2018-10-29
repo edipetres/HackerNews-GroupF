@@ -16,13 +16,18 @@ exports.getLatestDigest = async function (req, res) {
 
 async function findLatestId() {
   const db = await getDBConnection()
-  const latestIds = []
+  const latestIds = ['0']
 
   const collectionsToCrawl = ['comments', 'stories'] // TODO: add 'poll', 'pollopt' when db is done
 
+  
   for (const collectionName of collectionsToCrawl) {
-    let latestElement = await db.collection(collectionName).find({}).sort({createdAt: -1}).limit(1).toArray()
-    latestIds.push(latestElement[0].sequenceId)
+    try {
+      let latestElement = await db.collection(collectionName).find({}).sort({createdAt: -1}).limit(1).toArray()
+      latestIds.push(latestElement[0].sequenceId)
+    } catch (error) {
+      latestIds.push(0)
+    }
   }
 
   if (latestIds.length === 0) {

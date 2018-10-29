@@ -20,10 +20,10 @@ router.post('/', (req, res) => {
       commentController.create(req, res)
       break;
     case 'poll':
-      
+      res.serverError('Not implemented yet.')
       break;
-    case 'pollopt':
-      
+      case 'pollopt':
+      res.serverError('Not implemented yet.')
       break;
     default:
       // respond here in none of the above post types matched
