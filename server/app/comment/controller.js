@@ -31,7 +31,7 @@ exports.create = async (req, res) => {
     let comment = {}
     comment.content = result.payload.post_text
     comment.username = result.payload.username
-    comment.hanesstId = result.payload.hanesst_id
+    comment.sequenceId = result.payload.hanesst_id
     comment.votes = 0
 
     const savedComment = await repository.create(comment)

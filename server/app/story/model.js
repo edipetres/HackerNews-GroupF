@@ -7,7 +7,7 @@ const storySchema = new Schema({
     type: String,
     required: true
   },
-  storyId: {
+  sequenceId: {
     type: Number,
     required: true
   },
