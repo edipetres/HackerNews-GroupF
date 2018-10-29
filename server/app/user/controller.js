@@ -6,12 +6,9 @@ const jwt = require('jsonwebtoken')
 
 exports.register = async (req, res) => {
   // Validate payload
-  const expectedPayload = { username: '', password: ''}
-  const incomingPayload = req.body
-  const result = payloadCheck.validator(incomingPayload, expectedPayload, ['username', 'password'], false)
-  if (result.success !== true) {
-    return res.preconditionFailed(result.response.errorMessage)
-  }
+  logger.log('Saving user:', req.body.username)
+  const result = payloadCheck.validator(req.body, { username: '', password: ''}, ['username', 'password'], false)
+  if (result.success !== true) return res.preconditionFailed(result.response.errorMessage)
 
   const user = result.elements
   try {
@@ -27,7 +24,7 @@ exports.register = async (req, res) => {
       ["id", "username"],
     ));
   } catch (err) {
-    res.send(err);
+    res.serverError(err);
   }
 };
 
