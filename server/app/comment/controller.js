@@ -19,10 +19,9 @@ exports.create = async (req, res) => {
       post_text: '',
       hanesst_id: 0,
       username: '',
-      pwd_hash: ''
     }
     // username and password are encoded in the Authorization header
-    const result = validator(expectedPayload, req.body, ['post_text', 'hanesst_id', 'username', 'pwd_hash'], false)
+    const result = validator(expectedPayload, req.body, ['post_text', 'hanesst_id', 'username'], false)
     if (result.success !== true) {
       logger.error('Failed to process following request:', req.body)
       return res.preconditionFailed(result.errorMessage)

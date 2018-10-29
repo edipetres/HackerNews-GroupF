@@ -2,11 +2,10 @@ const express = require('express')
 const router = express.Router()
 const storyController = require('../story/controller')
 const commentController = require('../comment/controller')
-const validationMiddleware = require('../../middlewares/validateAuthorizationHeader')
 
 // Distribute incoming posts
 // Endpoint: website.com/post
-router.post('/', validationMiddleware, (req, res) => {
+router.post('/', (req, res) => {
   const post = req.body
 
   if (!post.hasOwnProperty('post_type')) {
