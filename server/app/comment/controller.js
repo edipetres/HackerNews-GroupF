@@ -45,14 +45,9 @@ exports.create = async (req, res) => {
 
 exports.getCommentsByStory = async (req, res) => {
   try {
-    let storyId = req.params.id
-    if (!storyId) {
-      return res.preconditionFailed('Cannot serve comment by story ID: parameter storyId missing')
-    }
-    
-    storyId = parseInt(storyId)
-    if (isNaN(storyId)) {
-      return res.preconditionFailed('Must pass a valid integer as story id. Got ' + typeof storyId)
+    const result = validateId(req.params.id)
+    if (result.success !== true) {
+      return res.preconditionFailed(result.errorMessage)
     }
 
     const story = await storyRepository.findStory(storyId)
@@ -65,5 +60,44 @@ exports.getCommentsByStory = async (req, res) => {
     return res.success(payload)
   } catch (error) {
     return res.serverError(error)
+  }
+}
+
+exports.vote = async (req, res) => {
+  const commentId = req.params.id
+  const validationResult = validateId(commentId)
+  if (validationResult.success !== true) {
+    return res.preconditionFailed(validationResult.errorMessage)
+  }
+  
+  try {
+    const updatedComment = await commentRepository.vote(commentId)
+    res.success({
+      comment: updatedComment
+    })
+  } catch (err) {
+    res.preconditionFailed(err.message)
+  }
+}
+
+
+function validateId(storyId) {
+  if (!storyId) {
+    return {
+      success: false,
+      errorMessage: 'Cannot serve comment by story ID: parameter storyId missing'
+    }
+  }
+  
+  storyId = parseInt(storyId)
+  if (isNaN(storyId)) {
+    return {
+      success: false, 
+      errorMessage: 'Must pass a valid integer as story id. Got ' + typeof storyId
+    }
+  }
+
+  return {
+    success: true
   }
 }
