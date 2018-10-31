@@ -23,6 +23,15 @@ exports.create = async (req, res) => {
   }
 };
 
+exports.getStories = async (req, res) => {
+  try {
+    const stories = await repository.getStories()
+    return res.success(stories)
+  } catch (err) {
+    return res.serverError(err)
+  }
+}
+
 exports.update = (req, res) => {
   res.success();
 };

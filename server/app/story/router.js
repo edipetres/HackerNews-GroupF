@@ -1,8 +1,10 @@
 require( "./model" );
-// const controller = require( "./controller" );
+const controller = require( "./controller" );
 const express = require( "express" );
 const router = express.Router( );
 
-// router.post( "/", controller.create );
+// path: .com/story
+
+router.get('/', controller.getStories)
 
 module.exports = router;
