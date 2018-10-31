@@ -69,14 +69,18 @@ export default {
       // Make a request for a user with a given ID
       const axios = require("axios");
       axios
-        .get("/user")
+        .post("/login", {
+          username: this.user.nameLogin,
+          password: this.user.passwordLogin
+        })
         .then(function(response) {
-          // handle success
           console.log(response);
+          const token = response.token
+          const cooki = document.cookie(token)
+          console.log(cooki)
         })
         .catch(function(error) {
-          // handle error
-          console.log(error);
+          console.log(error.response);
         })
         .then(function() {
           // always executed
@@ -84,9 +88,9 @@ export default {
     },
     onCreate() {
       axios
-        .post("/user", {
-          firstName: user.name,
-          lastName: user.password
+        .post("/registration", {
+          username: this.user.nameLogin,
+          password: this.user.passwordLogin
         })
         .then(function(response) {
           console.log(response);
