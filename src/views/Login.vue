@@ -69,9 +69,11 @@ export default {
       // Make a request for a user with a given ID
       const axios = require("axios");
       axios
-        .get("/user")
+        .post("/login", {
+          firstName: user.name,
+          lastName: user.password
+        })
         .then(function(response) {
-          // handle success
           console.log(response);
         })
         .catch(function(error) {
@@ -84,7 +86,7 @@ export default {
     },
     onCreate() {
       axios
-        .post("/user", {
+        .post("/registration", {
           firstName: user.name,
           lastName: user.password
         })
