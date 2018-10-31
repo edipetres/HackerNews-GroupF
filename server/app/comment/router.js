@@ -7,6 +7,7 @@ const router = express.Router( );
 
 // api route: /comments
 router.post('/', controller.create)
-router.get( "/new", controller.newComments );
+router.get('/new', controller.newComments );
+router.get('/story/:id', controller.getCommentsByStory)
 
 module.exports = router;

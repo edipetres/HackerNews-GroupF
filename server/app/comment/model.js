@@ -10,6 +10,10 @@ const commentSchema = new Schema({
 		type: Number,
 		required: true
 	},
+	parentId: {
+		type: Number, 
+		required: true
+	},
 	username: {
 		type: String,
 		required: true
