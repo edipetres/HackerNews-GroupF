@@ -6,7 +6,8 @@ import Axios from 'axios'
 import config from './config'
 
 Vue.config.productionTip = false
-Vue.prototype.$http = Axios.create({baseURL: process.env.NODE_ENV == 'development' ? config.apiUrl.dev : config.apiUrl.prod}); // using The Ternary Operator
+const apiUrl = process.env.NODE_ENV === 'production' ? config.apiUrl.prod : config.apiUrl.dev
+Vue.prototype.$http = Axios.create({baseURL: apiUrl});
 
 new Vue({
   router,
