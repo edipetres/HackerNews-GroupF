@@ -68,16 +68,18 @@ export default {
      // console.log("loggin in", this.user.nameLogin);
       // Make a request for a user with a given ID
       const axios = this.$http
+      const vm = this
       axios
         .post("/user/login", {
           username: this.user.nameLogin,
           password: this.user.passwordLogin
         })
         .then(function(response) {
-      //    console.log(response);
-          const token = response.token
-          const cooki = document.cookie(token)
-       ///   console.log(cooki)
+          console.log(response);
+          const token = response.data.token
+          
+          localStorage.setItem("token",token)
+          vm.$router.push("/")
         })
         .catch(function(error) {
         //  console.log(error.response);
