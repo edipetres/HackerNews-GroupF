@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Axios from 'axios'
-const config = require('./config')
+import config from './config'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios.create({baseURL: process.env.NODE_ENV == 'development' ? config.apiUrl.dev : config.apiUrl.prod}); // using The Ternary Operator

@@ -1,6 +1,7 @@
 .DS_Store
 /node_modules
 /dist
+prod-server.js
 
 /tests/e2e/reports/
 selenium-debug.log
@@ -8,6 +9,7 @@ selenium-debug.log
 # local env files
 .env.local
 .env.*.local
+.env
 
 # Log files
 npm-debug.log*

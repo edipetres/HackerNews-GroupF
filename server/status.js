@@ -3,7 +3,7 @@ var router = express.Router()
 
 // define the home page route
 router.get('/', function (req, res) {
-  res.send('Active')
+  res.send('Alive')
 })
 
 module.exports = router
