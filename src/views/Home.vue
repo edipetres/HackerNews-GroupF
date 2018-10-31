@@ -44,10 +44,10 @@ export default {
   methods: {
     fetchArticles() {
       const vm = this
-      this.$http.get('/posts')
+      this.$http.get('/story')
         .then(function (response) {
           // handle success
-          vm.articles = response.data
+          vm.articles = response.data.payload
         })
         .catch(function (error) {
           // handle error
