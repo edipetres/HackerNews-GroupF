@@ -70,8 +70,8 @@ export default {
       const axios = require("axios");
       axios
         .post("/login", {
-          firstName: user.name,
-          lastName: user.password
+          firstName: this.user.nameLogin,
+          lastName: this.user.password
         })
         .then(function(response) {
           console.log(response);
