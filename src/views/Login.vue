@@ -67,9 +67,9 @@ export default {
     onLogin() {
       console.log("loggin in", this.user.nameLogin);
       // Make a request for a user with a given ID
-      const axios = require("axios");
+      const axios = this.$http
       axios
-        .post("/login", {
+        .post("/user/login", {
           username: this.user.nameLogin,
           password: this.user.passwordLogin
         })
