@@ -1,12 +1,13 @@
 require('./model')
-const repository = require('./repository')
+const commentRepository = require('./repository')
+const storyRepository = require('../story/repository')
 const extractObject = require('../../utilities/index').extractObject
 const validator = require('../../utilities/validator')
 const logger = console
 
 exports.newComments = async (req, res) => {
   try {
-    const comments = await repository.getNewComments()
+    const comments = await commentRepository.getNewComments()
     return res.success(comments)
   } catch (err) {
     res.serverError(err)
@@ -35,7 +36,7 @@ exports.create = async (req, res) => {
     comment.parentId = result.payload.post_parent
     comment.votes = 0
 
-    const savedComment = await repository.create(comment)
+    const savedComment = await commentRepository.create(comment)
     return res.success(extractObject(savedComment, ['_id', 'username']))
   } catch (err) {
     res.serverError()
@@ -44,13 +45,24 @@ exports.create = async (req, res) => {
 
 exports.getCommentsByStory = async (req, res) => {
   try {
-    const storyId = req.params.id
+    let storyId = req.params.id
     if (!storyId) {
       return res.preconditionFailed('Cannot serve comment by story ID: parameter storyId missing')
     }
+    
+    storyId = parseInt(storyId)
+    if (isNaN(storyId)) {
+      return res.preconditionFailed('Must pass a valid integer as story id. Got ' + typeof storyId)
+    }
 
-    const comments = await repository.getCommentByStoryId(storyId)
-    return res.success(comments)
+    const story = await storyRepository.findStory(storyId)
+    const comments = await commentRepository.getCommentByStoryId(storyId)
+
+    const payload = {
+      story, 
+      comments
+    }
+    return res.success(payload)
   } catch (error) {
     return res.serverError(error)
   }

@@ -15,7 +15,9 @@ const getStories = async () => {
     return stories
 }
 
-const findStory = () => Story.find( );
+const findStory = async (id) => {
+    return await Story.find({sequenceId: id});
+}
 
 const findDetails = ( id ) => Story.findOne( { _id: id } );
 
