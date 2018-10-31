@@ -9,7 +9,7 @@ exports.create = async (req, res) => {
     story.title = post_title
     story.content = post_text
     story.sequenceId = hanesst_id
-    story.author_id = username // TODO get _id of user here to link it with user object in db
+    story.username = username // TODO get _id of user here to link it with user object in db
     story.url = post_url // making it not required - not all stories have a post url. See student_tester: hanesst_id: 363
     story.voteCount = 0
 

@@ -33,7 +33,7 @@ def sendRequests(user):
 if __name__ == '__main__':
     host = sys.argv[1]
 
-    receiver = '{}/users/registration'.format(host)
+    receiver = '{}/user/registration'.format(host)
 
     with open('/Users/edmondpetres/Cphbusiness/HackerNewsG7/utils/users.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -45,7 +45,7 @@ if __name__ == '__main__':
                 print('Column names are {", ".join(row)}\n')
                 line_count += 1
             else:
-                if line_count > 201508:
+                if line_count > 213045:
                   success = sendRequests({'username': row[0], 'password': row[1]})
 
                   if success == True:
