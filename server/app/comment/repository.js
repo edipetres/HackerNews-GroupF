@@ -11,3 +11,7 @@ exports.create = async (data) => {
   const comment = new Comment(data)
   return comment.save()
 }
+
+exports.getCommentByStoryId = async (storyId) => {
+  return Comment.find({parentId: storyId})
+}

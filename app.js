@@ -9,8 +9,9 @@ const customResponses = require('./server/middlewares/customResponses')
 const status = require('./server/status')
 const post = require('./server/app/post/router')
 
-if (process.env.NODE_ENV !== 'production') {
-  logger.info('Loading dotenv')
+const ENV = process.env.NODE_ENV !== 'production' ? 'development' : 'production'
+if (ENV !== 'production') {
+  logger.info('Loading dotenv in ' + ENV + ' mode')
   require('dotenv').load();
 }
 

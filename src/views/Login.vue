@@ -67,18 +67,20 @@ export default {
     onLogin() {
       console.log("loggin in", this.user.nameLogin);
       // Make a request for a user with a given ID
-      const axios = require("axios");
+      const axios = this.$http
       axios
-        .post("/login", {
+        .post("/user/login", {
           username: this.user.nameLogin,
           password: this.user.passwordLogin
         })
         .then(function(response) {
           console.log(response);
+          const token = response.token
+          const cooki = document.cookie(token)
+          console.log(cooki)
         })
         .catch(function(error) {
-          // handle error
-          console.log(error);
+          console.log(error.response);
         })
         .then(function() {
           // always executed
