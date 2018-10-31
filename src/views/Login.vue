@@ -65,7 +65,7 @@ export default {
       // Send data to the server or update your stores and such.
     },
     onLogin() {
-      console.log("loggin in", this.user.nameLogin);
+     // console.log("loggin in", this.user.nameLogin);
       // Make a request for a user with a given ID
       const axios = this.$http
       axios
@@ -74,13 +74,13 @@ export default {
           password: this.user.passwordLogin
         })
         .then(function(response) {
-          console.log(response);
+      //    console.log(response);
           const token = response.token
           const cooki = document.cookie(token)
-          console.log(cooki)
+       ///   console.log(cooki)
         })
         .catch(function(error) {
-          console.log(error.response);
+        //  console.log(error.response);
         })
         .then(function() {
           // always executed

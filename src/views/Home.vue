@@ -24,11 +24,11 @@
 
 <script>
 // @ is an alias to /src
-import Header from '@/components/Home/Header.vue'
-import Article from '@/components/Home/Article.vue'
+import Header from "@/components/Home/Header.vue";
+import Article from "@/components/Home/Article.vue";
 
 export default {
-  name: 'home',
+  name: "home",
   components: {
     Header,
     Article
@@ -36,32 +36,32 @@ export default {
   data: function() {
     return {
       articles: []
-    }
+    };
   },
   created() {
     this.fetchArticles();
   },
   methods: {
     fetchArticles() {
-      const vm = this
-      this.$http.get('/posts')
-        .then(function (response) {
-          // handle success
-          vm.articles = response.data
+      const axios = this.$http;
+      axios
+        .get("/story")
+        .then(function(response) {
+          this.articles = response.data;
         })
-        .catch(function (error) {
+        .catch(function(error) {
           // handle error
-          alert('Error loading articles from server.', error)
+          console.log(error);
+         // console.log(error);
         })
-        .then(function () {
+        .then(function() {
           // always executed
         });
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
-
 td,
 th {
   display: table-cell;
@@ -109,7 +109,6 @@ a:link {
   color: #000000;
   text-decoration: none;
 }
-
 </style>
 
 
