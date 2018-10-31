@@ -30,6 +30,7 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   // Validate payload
+  console.log("Login from controller")
   const expectedPayload = { username: '', password: ''}
   const incomingPayload = req.body
   const result = payloadCheck.validator(incomingPayload, expectedPayload, ['username', 'password'], false)

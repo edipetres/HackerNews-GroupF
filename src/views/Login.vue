@@ -70,8 +70,8 @@ export default {
       const axios = require("axios");
       axios
         .post("/login", {
-          firstName: this.user.nameLogin,
-          lastName: this.user.password
+          username: this.user.nameLogin,
+          password: this.user.passwordLogin
         })
         .then(function(response) {
           console.log(response);
@@ -87,8 +87,8 @@ export default {
     onCreate() {
       axios
         .post("/registration", {
-          firstName: user.name,
-          lastName: user.password
+          username: this.user.nameLogin,
+          password: this.user.passwordLogin
         })
         .then(function(response) {
           console.log(response);
