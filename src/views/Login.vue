@@ -75,10 +75,12 @@ export default {
         })
         .then(function(response) {
           console.log(response);
+          const token = response.token
+          const cooki = document.cookie(token)
+          console.log(cooki)
         })
         .catch(function(error) {
-          // handle error
-          console.log(error);
+          console.log(error.response);
         })
         .then(function() {
           // always executed
