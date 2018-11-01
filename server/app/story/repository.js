@@ -11,7 +11,8 @@ const createStory = async ( data ) => {
 };
 
 const getStories = async () => {
-    const stories = await Story.find({}).limit(20)
+    const storyLimit = 30
+    const stories = await Story.find({}).limit(storyLimit)
     return stories
 }
 
