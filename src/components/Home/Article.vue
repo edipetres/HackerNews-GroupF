@@ -8,7 +8,7 @@
         </svg>
       </td>
       <td>
-        <a :href="data.articleUrl" class="title">{{ data.title }}</a>
+        <a :href="data.url" class="title" target="_blank">{{ data.title }}</a>
         <span class="domain" v-if="data.articleUrl">
           (<a :href="data.articleUrl">{{ data.articleUrl | trimHost }}</a>)
         </span>
@@ -55,6 +55,9 @@ tr {
     
     .title {
       color: black;
+    }
+    a:visited {
+      color: gray;
     }
 
     .domain {
