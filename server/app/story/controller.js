@@ -1,5 +1,6 @@
 const utilities = require("../../utilities");
 const repository = require("./repository");
+const validateId = require('../../utilities/index').validateId
 // const logger = console
 
 exports.create = async (req, res) => {
@@ -57,3 +58,20 @@ exports.detail = async (req, res) => {
     res.send(err);
   }
 };
+
+exports.vote = async (req, res) => {
+  const storyId = req.params.id
+  const validationResult = validateId(storyId)
+  if (validationResult.success !== true) {
+    return res.preconditionFailed(validationResult.errorMessage)
+  }
+  
+  try {
+    const updatedStory = await repository.vote(storyId)
+    res.success({
+      story: updatedStory
+    })
+  } catch (err) {
+    res.preconditionFailed(err.message)
+  }
+}

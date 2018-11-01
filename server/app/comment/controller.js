@@ -2,6 +2,7 @@ require('./model')
 const commentRepository = require('./repository')
 const storyRepository = require('../story/repository')
 const extractObject = require('../../utilities/index').extractObject
+const validateId = require('../../utilities/index').validateId
 const validator = require('../../utilities/validator')
 const logger = console
 
@@ -77,27 +78,5 @@ exports.vote = async (req, res) => {
     })
   } catch (err) {
     res.preconditionFailed(err.message)
-  }
-}
-
-
-function validateId(storyId) {
-  if (!storyId) {
-    return {
-      success: false,
-      errorMessage: 'Cannot serve comment by story ID: parameter storyId missing'
-    }
-  }
-  
-  storyId = parseInt(storyId)
-  if (isNaN(storyId)) {
-    return {
-      success: false, 
-      errorMessage: 'Must pass a valid integer as story id. Got ' + typeof storyId
-    }
-  }
-
-  return {
-    success: true
   }
 }

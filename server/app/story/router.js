@@ -1,10 +1,12 @@
 require( "./model" );
-const controller = require( "./controller" );
 const express = require( "express" );
 const router = express.Router( );
+const controller = require( "./controller" );
+const validateToken = require('../../middlewares/validateToken')
 
 // path: .com/story
 
 router.get('/', controller.getStories)
+router.post('/vote/:id', validateToken, controller.vote)
 
 module.exports = router;
