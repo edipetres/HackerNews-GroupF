@@ -17,8 +17,7 @@
                                 <td align="right" valign="top" class="title"><span class="rank"></span></td>
                                 <td valign="top" class="votelinks">
                                     <center>
-                                        <!-- @click="vote" v-show="!voted" -->
-                                            <a href="#" >
+                                            <a href="#" @click="vote" v-show="!voted">
                                                 <div class="votearrow" title="upvote"></div>
                                             </a>
                                     </center>
@@ -36,9 +35,9 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td>
-                                    <form method="post" action="comment"><input type="hidden" name="parent" value="18376741"><input type="hidden" name="goto" value="item?id=18376741"><input type="hidden" name="hmac" value="e6cbb8d2abb18194b89bc65311dd062ce72c3f3a"><textarea name="text" rows="6"
-                                            cols="60"></textarea>
-                                        <br><br><input type="submit" value="add comment"></form>
+                                    <div>
+                                    <textarea name="text" rows="6" cols="60" v-model="commentText"></textarea>
+                                    <br><br><input type="submit" value="add comment" @click="postCommentParent"></div>
                                 </td>
                             </tr>
                         </tbody>
@@ -70,25 +69,57 @@ export default {
     return {
         voted : false,
      storyData : {},
-     commentData : []
+     commentData : [],
+     commentText: ""
     };
   },
   created() {
     this.fetchStoryComments();
   },
   methods: {
+      vote: function () {
+      this.$http.post('/story/vote/' + this.storyData._id, {
+        token: localStorage.getItem('token')
+      })
+      .then(response => {
+        console.log("test test test");
+        this.articleData = response.data.payload.story
+        this.voted = true
+        })
+      .catch(response => {
+        console.log('resp', response)
+        
+      })
+    },
+    postCommentParent: function(){
+     this.$http.post('/comment/', {
+        post_text: this.commentText,
+        hanesst_id: storyData,
+        username: '',
+        post_parent: storyData.sequenceId
+      })
+      .then(response => {
+        console.log("test test test");
+        this.articleData = response.data.payload.story
+        this.voted = true
+        })
+      .catch(response => {
+        console.log('resp', response)
+        
+      })
+    },
     fetchStoryComments: function () {
       this.$http.get('/comment/story/' + this.$route.query.id)
       .then(response => {
-        console.log(response.data.payload.story);
-        this.storyData = response.data.payload.story;
+        console.log(response.data.payload.comments);
+        this.storyData = response.data.payload.story[0];
         this.commentData = response.data.payload.comments;
         })
       .catch(response => {
         console.log('resp', response)
         
       })
-    }
+  }
   },
   filters: {
     trimHost: url => {
