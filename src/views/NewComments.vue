@@ -45,7 +45,8 @@ export default {
   methods: {
     fetchComments() {
       const vm = this;
-      this.$http.get("/comment/new")
+      this.$http
+      .get("/comment/new")
         .then(function(response) {
           // handle success
           vm.comments = response.data.payload;
