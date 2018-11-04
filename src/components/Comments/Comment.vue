@@ -11,7 +11,7 @@
                                     </td>
                                     <td class="default">
                                         <div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
-          <a href="#" class="hnuser">{{ commentData.username }}</a> <span class="age"><a href="#"> {{ timeAgo() }}</a></span> <span id="unv_18376184"></span><span class="par"> | <a href="#">parent</a></span>
+          <a href="#" class="hnuser">{{ commentData.username }}</a> <span class="age"><a href="#"> {{ commentData.updatedAt }}</a></span> <span id="unv_18376184"></span><span class="par"> | <a href="#">parent</a></span>
                                             <a class="togg" n="1"
                                                 href="javascript:void(0)" onclick="return toggle(event, 18376184)"></a> <span class="storyon"> | on: <a href="#">{{ commentData.parentId }}</a></span>
                                             </span>
@@ -81,7 +81,9 @@ export default {
   },
   methods: {
       timeAgo: function () {
-          return this.commentData.updatedAt;
+          var time = new Date(0);
+          var seconds = time.getMilliseconds(); //1440516958
+          return time;
       }
   }
 }

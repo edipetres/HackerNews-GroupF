@@ -16,7 +16,7 @@
                                     <td colspan="2"></td>
                                     <td class="subtext">
                                         <span class="score">{{ articleData.voteCount }} points</span> by <a href="#" class="hnuser">{{ articleData.username }}</a> <span class="age"><a href="#">{{ articleData.dateAdded }} hours ago</a></span> <span ></span> |
-                                        <a href="#">hide</a> | <a href="#">{{ articleData.commentCount }} comments</a> </td>
+                                        <a href="#">hide</a> | <router-link :to="{ path: '/storycomments', query: { id: articleData.sequenceId }}" >{{ articleData.commentCount }} comments</router-link> </td>
                                 </tr>
                                 <tr class="spacer" style="height:5px"></tr>
 </div>

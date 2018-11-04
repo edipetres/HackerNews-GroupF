@@ -46,6 +46,7 @@ exports.create = async (req, res) => {
 
 exports.getCommentsByStory = async (req, res) => {
   try {
+    console.log("we got to here"+req.params.id);
     const result = validateId(req.params.id)
     if (result.success !== true) {
       return res.preconditionFailed(result.errorMessage)

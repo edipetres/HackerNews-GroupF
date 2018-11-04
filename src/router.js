@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import NewComments from './views/NewComments.vue'
+import StoryComments from './views/StoryComments.vue'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
     {
       path: '/newcomments',
       component: NewComments
+    }
+    ,
+    {
+      path: '/storycomments',
+      component: StoryComments
     }
   ]
 })
