@@ -62,6 +62,7 @@ export default {
         token: localStorage.getItem('token')
       })
       .then(response => {
+        console.log("test test test");
         this.articleData = response.data.payload.story
         this.voted = true
         })

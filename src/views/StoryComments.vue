@@ -17,19 +17,20 @@
                                 <td align="right" valign="top" class="title"><span class="rank"></span></td>
                                 <td valign="top" class="votelinks">
                                     <center>
-                                        <a id="up_18376741" href="vote?id=18376741&amp;how=up&amp;goto=item%3Fid%3D18376741">
-                                            <div class="votearrow" title="upvote"></div>
-                                        </a>
+                                        <!-- @click="vote" v-show="!voted" -->
+                                            <a href="#" >
+                                                <div class="votearrow" title="upvote"></div>
+                                            </a>
                                     </center>
                                 </td>
-                                <td class="title"><a href="http://blog.robertelder.org/jeri-ellsworth-robot-uprising/" class="storylink">Jeri Ellsworth and the Robot Uprising of 2038</a><span class="sitebit comhead"> (<a href="from?site=robertelder.org"><span class="sitestr">robertelder.org</span></a>)</span>
+                                <td class="title"><a :href="storyData.url" class="storylink" target="_blank">{{ storyData.title }}</a><span class="sitebit comhead"> (<a :href="storyData.url"><span class="sitestr">{{ storyData.url | trimHost }}</span></a>)</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
                                 <td class="subtext">
-                                    <span class="score" id="score_18376741">89 points</span> by <a href="user?id=robertelder" class="hnuser">robertelder</a> <span class="age"><a href="item?id=18376741">4 hours ago</a></span> <span id="unv_18376741"></span>                                    | <a href="hide?id=18376741&amp;goto=item%3Fid%3D18376741">hide</a> | <a href="https://hn.algolia.com/?query=Jeri%20Ellsworth%20and%20the%20Robot%20Uprising%20of%202038&amp;sort=byDate&amp;dateRange=all&amp;type=story&amp;storyText=false&amp;prefix&amp;page=0"
-                                        class="hnpast">past</a> | <a href="https://www.google.com/search?q=Jeri%20Ellsworth%20and%20the%20Robot%20Uprising%20of%202038">web</a> | <a href="fave?id=18376741&amp;auth=494a43f747a74406633e928337c5f738fd3971d5">favorite</a>                                    | <a href="item?id=18376741">34&nbsp;comments</a> </td>
+                                    <span class="score">{{ storyData.voteCount }} points</span> by <a href="#" class="hnuser">{{ storyData.username }}</a> <span class="age"><a href="#">{{ storyData.dateAdded }} hours ago</a></span> <span ></span> |
+                                        <a href="#">hide</a> | <a href="#" class="hnpast">past</a> | <a href="#">web</a> | <a href="#">favorite</a> | <router-link :to="{ path: '/storycomments', query: { id: storyData.sequenceId }}" >{{ storyData.commentCount }} comments</router-link></td>
                             </tr>
                             <tr style="height:10px"></tr>
                             <tr>
@@ -44,7 +45,7 @@
                     </table>
                     <br><br>
                     <table border="0" class="comment-tree">
-
+                        <Comment v-for="(comment, index) in commentData" v-bind:key="index" :data="comment" :index="index"></Comment> 
                     </table>
                 </td>
             </tr>
@@ -67,29 +68,78 @@ export default {
   },
   data: function() {
     return {
-      storyComments: {}
+        voted : false,
+     storyData : {},
+     commentData : []
     };
   },
   created() {
     this.fetchStoryComments();
   },
   methods: {
-    fetchStoryComments() {
-      const vm = this;
-      this.$http
-        .get("/comment/story/"+this.$route.query.id)
-        .then(function(response) {
-          // handle success
-          vm.storyComments = response.data.payload;
+    fetchStoryComments: function () {
+      this.$http.get('/comment/story/' + this.$route.query.id)
+      .then(response => {
+        console.log(response.data.payload.story);
+        this.storyData = response.data.payload.story;
+        this.commentData = response.data.payload.comments;
         })
-        .catch(function(error) {
-          // handle error
-          alert("Error loading articles from server.", error);
-        })
-        .then(function() {
-          // always executed
-        });
+      .catch(response => {
+        console.log('resp', response)
+        
+      })
     }
-  }
+  },
+  filters: {
+    trimHost: url => {
+      if (!url) return "";
+      var domain = extractHostname(url),
+        splitArr = domain.split("."),
+        arrLen = splitArr.length;
+      //extracting the root domain here
+      //if there is a subdomain
+      if (arrLen > 2) {
+        domain = splitArr[arrLen - 2] + "." + splitArr[arrLen - 1];
+        //check to see if it's using a Country Code Top Level Domain (ccTLD) (i.e. ".me.uk")
+        if (
+          splitArr[arrLen - 2].length == 2 &&
+          splitArr[arrLen - 1].length == 2
+        ) {
+          //this is using a ccTLD
+          domain = splitArr[arrLen - 3] + "." + domain;
+        }
+      }
+      return domain;
+
+      function extractHostname(url) {
+        var hostname;
+        //find & remove protocol (http, ftp, etc.) and get hostname
+        if (url.indexOf("//") > -1) {
+          hostname = url.split("/")[2];
+        } else {
+          hostname = url.split("/")[0];
+        }
+        //find & remove port number
+        hostname = hostname.split(":")[0];
+        //find & remove "?"
+        hostname = hostname.split("?")[0];
+        return hostname;
+      }
+    }
+  },
+  vote: function () {
+      this.$http.post('/story/vote/' + this.storyData._id, {
+        token: localStorage.getItem('token')
+      })
+      .then(response => {
+        console.log("test test test");
+        this.storyData = response.data.payload.story
+        this.voted = true
+        })
+      .catch(response => {
+        console.log('resp', response)
+        
+      })
+    }
 };
 </script>

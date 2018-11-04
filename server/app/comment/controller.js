@@ -46,14 +46,13 @@ exports.create = async (req, res) => {
 
 exports.getCommentsByStory = async (req, res) => {
   try {
-    console.log("we got to here"+req.params.id);
     const result = validateId(req.params.id)
     if (result.success !== true) {
       return res.preconditionFailed(result.errorMessage)
     }
 
-    const story = await storyRepository.findStory(storyId)
-    const comments = await commentRepository.getCommentByStoryId(storyId)
+    const story = await storyRepository.findStory(req.params.id)
+    const comments = await commentRepository.getCommentByStoryId(req.params.id)
 
     const payload = {
       story, 
