@@ -1,5 +1,26 @@
 <template>
-  <div class="tr-wrapper">
+<div>
+                                  <tr class="athing">
+                                    <td align="right" valign="top" class="title"><span class="rank">{{ index + 1 }}.</span></td>
+                                    <td valign="top" class="votelinks">
+                                        <center>
+                                            <a href="#" @click="vote" v-show="!voted">
+                                                <div class="votearrow" title="upvote"></div>
+                                            </a>
+                                        </center>
+                                    </td>
+                                    <td class="title"><a :href="articleData.url" class="storylink" target="_blank">{{ articleData.title }}</a><span class="sitebit comhead"> (<a :href="articleData.url"><span class="sitestr">{{ articleData.url | trimHost }}</span></a>)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td class="subtext">
+                                        <span class="score">{{ articleData.voteCount }} points</span> by <a href="#" class="hnuser">{{ articleData.username }}</a> <span class="age"><a href="#">{{ articleData.dateAdded }} hours ago</a></span> <span ></span> |
+                                        <a href="#">hide</a> | <a href="#">{{ articleData.commentCount }} comments</a> </td>
+                                </tr>
+                                <tr class="spacer" style="height:5px"></tr>
+</div>
+  <!-- <div class="tr-wrapper">
     <tr class="article-header">
       <td>{{ index + 1 }}.</td>
       <td style="width: 20px; height: 20px;">
@@ -11,16 +32,16 @@
         <a :href="articleData.url" class="title" target="_blank">{{ articleData.title }}</a>
         <span class="domain" v-if="articleData.url">
           (<a :href="articleData.url">{{ articleData.url | trimHost }}</a>)
-        </span>
+        </span> -->
         <!-- (<span class="sitebit comhead"> <a href="#" class="title"></a></span>) -->
-      </td>
+     <!-- </td>
     </tr>
     <tr class="article-info">
       <td colspan="2"></td>
       <td style="padding-top: 2px;">{{ articleData.voteCount }} points by {{ articleData.username }} {{ articleData.dateAdded }} | hide | {{ articleData.commentCount }} comments </td>
     </tr>
     <tr class="spacer" style="height:5px"></tr>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -90,54 +111,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-svg.upvote-arrow {
-  width: 20px;
-  height: 20px;
-  display: block;
-  margin: 0 2px -5px -5px;
-}
 
-div.tr-wrapper {
-  padding-left: 10px;
-}
 
-tr {
-  .article-header {
-    font-size: 10pt;
-
-    .title {
-      color: black;
-    }
-    a:visited {
-      color: gray;
-    }
-
-    .domain {
-      font-size: 8pt;
-
-      a:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .article-info {
-    font-size: 9px;
-    padding-top: 2px !important;
-  }
-}
-
-td {
-  a {
-    color: black;
-    text-decoration: none;
-  }
-
-  a:visited {
-    color: #828282;
-    text-decoration: none;
-  }
-}
-</style>
 

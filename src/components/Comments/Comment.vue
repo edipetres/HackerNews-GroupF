@@ -1,5 +1,31 @@
 <template>
-    <tbody>
+<div class="table-wrapper">
+<tr class="athing" id="18376184">
+                                    <td class="ind"></td>
+                                    <td valign="top" class="votelinks">
+                                        <center>
+                                            <a id="up_18376184" href="#">
+                                                <div class="votearrow" title="upvote"></div>
+                                            </a>
+                                        </center>
+                                    </td>
+                                    <td class="default">
+                                        <div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="#" class="hnuser">{{ commentData.username }}</a> <span class="age"><a href="#"> {{ timeAgo() }}</a></span> <span id="unv_18376184"></span><span class="par"> | <a href="#">parent</a></span>
+                                            <a class="togg" n="1"
+                                                href="javascript:void(0)" onclick="return toggle(event, 18376184)"></a> <span class="storyon"> | on: <a href="#">{{ commentData.parentId }}</a></span>
+                                            </span>
+                                        </div><br>
+                                        <div class="comment">
+                                            <span class="commtext c00">{{ commentData.content }}</span>
+                                            <div class="reply"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="spacer" style="height:15px"></tr> 
+</div>
+
+    <!-- <tbody>
         <tr class="newstcomments" id="MAKE AN AUTOMATIC ID" >
             <td class="indline"></td>
             <td class="votebutton">
@@ -38,30 +64,28 @@
                 </div>
             </td>
         </tr>
-    </tbody>
+    </tbody> -->
 </template>
 
 <script>
 export default {
-    
+  props: ["data", "index"],
+  data: function() {
+    return {
+      voted: false,
+      commentData: {}
+    }
+  },
+  created: function() {
+    this.commentData = this.data
+  },
+  methods: {
+      timeAgo: function () {
+          return this.commentData.updatedAt;
+      }
+  }
 }
 </script>
 
-<style lang="scss" scoped>
 
-.into {
-    a {
-        color: black
-    }
-}
 
-.votebutton{
-    vertical-align: top;
-    
-}
-
-.div2{
-    margin-top: 2px;
-    margin-bottom: -10px;
-}
-</style>
