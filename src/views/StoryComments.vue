@@ -28,7 +28,7 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td class="subtext">
-                                    <span class="score">{{ storyData.voteCount }} points</span> by <a href="#" class="hnuser">{{ storyData.username }}</a> <span class="age"><a href="#">{{ storyData.dateAdded }} hours ago</a></span> <span ></span> |
+                                    <span class="score">{{ storyData.voteCount }} points</span> by <a href="#" class="hnuser">{{ storyData.username }}USERNAME </a> <span class="age"><a href="#">{{ storyData.createdAt }}</a></span> <span ></span> |
                                         <a href="#">hide</a> | <a href="#" class="hnpast">past</a> | <a href="#">web</a> | <a href="#">favorite</a> | <router-link :to="{ path: '/storycomments', query: { id: storyData.sequenceId }}" >{{ storyData.commentCount }} comments</router-link></td>
                             </tr>
                             <tr style="height:10px"></tr>
@@ -83,7 +83,7 @@ export default {
       })
       .then(response => {
         console.log("test test test");
-        this.articleData = response.data.payload.story
+        this.storyData = response.data.payload.story
         this.voted = true
         })
       .catch(response => {
