@@ -43,6 +43,7 @@ export default {
     this.fetchComments();
   },
   methods: {
+
     fetchComments() {
       const vm = this;
       this.$http

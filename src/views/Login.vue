@@ -89,10 +89,12 @@ export default {
         });
     },
     onCreate() {
+      const axios = this.$http
+      const vm = this
       axios
-        .post("/registration", {
-          username: this.user.nameLogin,
-          password: this.user.passwordLogin
+        .post("/user/registration", {
+          username: this.user.name,
+          password: this.user.password
         })
         .then(function(response) {
           console.log(response);

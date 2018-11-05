@@ -4,7 +4,7 @@
                                     <td class="ind"></td>
                                     <td valign="top" class="votelinks">
                                         <center>
-                                            <a id="up_18376184" href="#">
+                                             <a href="#" @click="vote" v-show="!voted">
                                                 <div class="votearrow" title="upvote"></div>
                                             </a>
                                         </center>
@@ -80,6 +80,19 @@ export default {
     this.commentData = this.data
   },
   methods: {
+      vote: function () {
+      this.$http.post('/comment/vote/' + this.commentData._id, {
+        token: localStorage.getItem('token')
+      })
+      .then(response => {
+        this.commentData = response.data.comment
+        this.voted = true
+        })
+      .catch(response => {
+        console.log('resp', response)
+        
+      })
+    },
       timeAgo: function () {
           var time = new Date(0);
           var seconds = time.getMilliseconds(); //1440516958
