@@ -96,11 +96,12 @@ export default {
                 })
                 .then(function (response) {
                     console.log(response);
-                    // TODO
-                    // alert that new user registration was successful prompting them to log in
+                    if(response.data.success === true){
+                      alert('successful registered user' + response.data.payload.username)
+                    }
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    alert(error.response.data.error);
                 });
         }
     }
