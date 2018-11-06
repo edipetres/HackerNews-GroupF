@@ -28,7 +28,7 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td class="subtext">
-                                    <span class="score">{{ storyData.voteCount }} points</span> by <a href="#" class="hnuser">{{ storyData.username }} </a> <span class="age"><a href="#">{{ timeSince(storyData.createdAt) }}</a></span> <span ></span> |
+                                    <span class="score">{{ storyData.voteCount }} points</span> by <a href="#" class="hnuser">{{ storyData.username }}</a>  <span class="age">&nbsp;<a href="#">{{ timeSince(storyData.createdAt) }}</a></span> <span ></span> |
                                         <a href="#">hide</a> | <a href="#" class="hnpast">past</a> | <a href="#">web</a> | <a href="#">favorite</a> | <router-link :to="{ path: '/storycomments', query: { id: storyData.sequenceId }}" >{{ storyData.commentCount }} comments</router-link></td>
                             </tr>
                             <tr style="height:10px"></tr>
@@ -55,6 +55,8 @@
 </template>
 
 <script>
+
+
 // @ is an alias to /src
 import Header from "@/components/Home/Header.vue";
 import StoryComment from "@/components/Comments/StoryComment.vue";
@@ -74,6 +76,7 @@ export default {
     };
   },
   created() {
+    
     this.fetchStoryComments();
   },
   methods: {
@@ -134,11 +137,12 @@ export default {
       })
     },
     postCommentParent: function(){
+      console.log(this.storyData.parentId);
      this.$http.post('/comment/', {
+        token: localStorage.getItem('token'),
         post_text: this.commentText,
-        hanesst_id: storyData,
-        username: '',
-        post_parent: storyData.sequenceId
+        hanesst_id: 0,
+        post_parent: this.storyData.sequenceId        
       })
       .then(response => {
         console.log("test test test");
@@ -199,19 +203,5 @@ export default {
       }
     }
   },
-  vote: function () {
-      this.$http.post('/story/vote/' + this.storyData._id, {
-        token: localStorage.getItem('token')
-      })
-      .then(response => {
-        console.log("test test test");
-        this.storyData = response.data.payload.story
-        this.voted = true
-        })
-      .catch(response => {
-        console.log('resp', response)
-        
-      })
-    }
 };
 </script>

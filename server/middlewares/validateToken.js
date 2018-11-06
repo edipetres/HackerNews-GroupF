@@ -5,6 +5,7 @@ const logger = console
 
 // Validates JWT authorization token sent in header by our own backend
 module.exports = function (req, res, next) {
+  console.log(req.body);
   const token = req.headers["authorization"] || req.body.token
   const SECRET = process.env.JWT_SECRET
   console.log('body', req.body)
