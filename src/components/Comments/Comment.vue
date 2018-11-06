@@ -13,7 +13,7 @@
                                         <div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
           <a href="#" class="hnuser">{{ commentData.username }}</a> <span class="age"><a href="#"> {{ timeSince(commentData.createdAt) }}</a></span> <span id=""></span><span class="par"> | <a href="#">parent</a></span>
                                             <a class="togg" n="1"
-                                                href="javascript:void(0)" onclick="return toggle(event, 18376184)"></a> <span class="storyon"> | on: <a href="#">{{ commentData.parentId }}</a></span>
+                                                href="javascript:void(0)" onclick="return toggle(event, 18376184)"></a> <span class="storyon"> | on: <router-link :to="{ path: '/storycomments', query: { id: commentData.parentId }}" >{{ commentData.parentId }}</router-link></span>
                                             </span>
                                         </div><br>
                                         <div class="comment">
