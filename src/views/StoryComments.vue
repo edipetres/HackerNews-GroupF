@@ -145,9 +145,8 @@ export default {
         post_parent: this.storyData.sequenceId        
       })
       .then(response => {
-        console.log("test test test");
-        this.articleData = response.data.payload.story
-        this.voted = true
+        this.commentData = response.data.payload.comments;
+        this.$router.go(this.$router.currentRoute);
         })
       .catch(response => {
         console.log('resp', response)
