@@ -28,7 +28,7 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td class="subtext">
-                                    <span class="score">{{ storyData.voteCount }} points</span> by <a href="#" class="hnuser">{{ storyData.username }}USERNAME </a> <span class="age"><a href="#">{{ storyData.createdAt }}</a></span> <span ></span> |
+                                    <span class="score">{{ storyData.voteCount }} points</span> by <a href="#" class="hnuser">{{ storyData.username }} </a> <span class="age"><a href="#">{{ timeSince(storyData.createdAt) }}</a></span> <span ></span> |
                                         <a href="#">hide</a> | <a href="#" class="hnpast">past</a> | <a href="#">web</a> | <a href="#">favorite</a> | <router-link :to="{ path: '/storycomments', query: { id: storyData.sequenceId }}" >{{ storyData.commentCount }} comments</router-link></td>
                             </tr>
                             <tr style="height:10px"></tr>
@@ -44,7 +44,7 @@
                     </table>
                     <br><br>
                     <table border="0" class="comment-tree">
-                        <Comment v-for="(comment, index) in commentData" v-bind:key="index" :data="comment" :index="index"></Comment> 
+                        <StoryComment v-for="(comment, index) in commentData" v-bind:key="index" :data="comment" :index="index"></StoryComment> 
                     </table>
                 </td>
             </tr>
@@ -77,6 +77,48 @@ export default {
     this.fetchStoryComments();
   },
   methods: {
+    timeSince: function(date) {
+  var timeStamp = new Date(date);
+  var seconds = Math.floor((new Date().getTime() - timeStamp.getTime()) / 1000);
+  var interval = Math.floor(seconds / 31536000);
+
+  if (interval > 1) {
+    return interval + " years ago";
+  }
+  interval = seconds / 31536000;
+  if(interval < 2 && interval >= 1){
+    return Math.floor(interval) + " year ago";
+  }
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) {
+    return interval + " months ago";
+  }
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) {
+    return interval + " days ago";
+  }
+  interval = seconds / 86400;
+  if(interval < 2 && interval >= 1){
+    return Math.floor(interval) + " day ago";
+  }
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) {
+    return interval + " hours ago";
+  }
+  interval = seconds / 3600;
+  if(interval < 2 && interval >= 1){
+    return Math.floor(interval) + " hour ago";
+  }
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) {
+    return interval + " minutes ago";
+  }
+  interval = seconds / 60;
+  if(interval < 2 && interval >= 1){
+    return Math.floor(interval) + " minute ago";
+  }
+  return Math.floor(seconds) + " seconds ago";
+},
       vote: function () {
       this.$http.post('/story/vote/' + this.storyData._id, {
         token: localStorage.getItem('token')
@@ -111,7 +153,6 @@ export default {
     fetchStoryComments: function () {
       this.$http.get('/comment/story/' + this.$route.query.id)
       .then(response => {
-        console.log(response.data.payload.comments);
         this.storyData = response.data.payload.story[0];
         this.commentData = response.data.payload.comments;
         })

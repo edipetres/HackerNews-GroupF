@@ -11,7 +11,7 @@
                                     </td>
                                     <td class="default">
                                         <div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
-          <a href="#" class="hnuser">{{ commentData.username }}</a> <span class="age"><a href="#"> {{ commentData.createdAt }}</a></span> <span id=""></span><span class="par"> | <a href="#">parent</a></span>
+          <a href="#" class="hnuser">{{ commentData.username }}</a> <span class="age"><a href="#"> {{ timeSince(commentData.createdAt) }}</a></span> <span id=""></span><span class="par"> | <a href="#">parent</a></span>
                                             <a class="togg" n="1"
                                                 href="javascript:void(0)" onclick="return toggle(event, 18376184)"></a> <span class="storyon"> | on: <a href="#">{{ commentData.parentId }}</a></span>
                                             </span>
@@ -80,6 +80,48 @@ export default {
     this.commentData = this.data
   },
   methods: {
+      timeSince: function(date) {
+  var timeStamp = new Date(date);
+  var seconds = Math.floor((new Date().getTime() - timeStamp.getTime()) / 1000);
+  var interval = Math.floor(seconds / 31536000);
+
+  if (interval > 1) {
+    return interval + " years ago";
+  }
+  interval = seconds / 31536000;
+  if(interval < 2 && interval >= 1){
+    return Math.floor(interval) + " year ago";
+  }
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) {
+    return interval + " months ago";
+  }
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) {
+    return interval + " days ago";
+  }
+  interval = seconds / 86400;
+  if(interval < 2 && interval >= 1){
+    return Math.floor(interval) + " day ago";
+  }
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) {
+    return interval + " hours ago";
+  }
+  interval = seconds / 3600;
+  if(interval < 2 && interval >= 1){
+    return Math.floor(interval) + " hour ago";
+  }
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) {
+    return interval + " minutes ago";
+  }
+  interval = seconds / 60;
+  if(interval < 2 && interval >= 1){
+    return Math.floor(interval) + " minute ago";
+  }
+  return Math.floor(seconds) + " seconds ago";
+},
       vote: function () {
       this.$http.post('/comment/vote/' + this.commentData._id, {
         token: localStorage.getItem('token')
