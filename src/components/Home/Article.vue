@@ -122,7 +122,9 @@ export default {
     contentCheck: function() {
       // check if it has url or other content
       if (this.articleData.content) {
-        this.$router.push({ path: '/story', query: { id: this.articleData.sequenceId }})
+        this.$router.push({ path: '/storycomments', query: { id: this.articleData.sequenceId }})
+      } else {
+        window.location = this.articleData.url;
       }
     }
   },

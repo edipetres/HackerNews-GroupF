@@ -29,6 +29,11 @@
                   </tr>
                   <tr>
                     <td colspan="2"></td>
+                    <!-- <td>
+                      {{ this.storyData.content }} 
+                    </td>
+                  </tr> 
+                  <tr>-->
                     <td class="subtext">
                       <span class="score">{{ storyData.voteCount }} points</span> by <a href="#" class="hnuser">{{
                         storyData.username }}</a> <span class="age">&nbsp;<a href="#">{{ timeSince(storyData.createdAt)
