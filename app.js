@@ -7,7 +7,6 @@ let logger = console
 const customResponses = require('./server/middlewares/customResponses')
 
 const status = require('./server/status')
-const post = require('./server/app/post/router')
 
 const ENV = process.env.NODE_ENV !== 'production' ? 'development' : 'production'
 if (ENV !== 'production') {

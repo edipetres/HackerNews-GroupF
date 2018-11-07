@@ -1,6 +1,5 @@
-require('./model')
-const commentRepository = require('./repository')
 const storyRepository = require('../story/repository')
+const commentRepository = require('./repository')
 const extractObject = require('../../utilities/index').extractObject
 const validateId = require('../../utilities/index').validateId
 const validator = require('../../utilities/validator')
