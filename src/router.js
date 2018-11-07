@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import NewComments from './views/NewComments.vue'
 import StoryComments from './views/StoryComments.vue'
+import Submit from './views/Submit.vue'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
     {
       path: '/storycomments',
       component: StoryComments
+    }
+    ,
+    {
+      path: '/submit',
+      component: Submit
     }
   ]
 })
