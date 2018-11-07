@@ -8,16 +8,16 @@
         </svg>
       </td>
       <td>
-        <a :href="data.articleUrl" class="title">{{ data.title }}</a>
+        <a :href="data.url" class="title">{{ data.title }}</a>
         <span class="domain">
-          (<a :href="data.articleUrl">{{ data.articleUrl | trimHost }}</a>)
+          (<a :href="data.url">{{ data.url | trimHost }}</a>)
         </span>
         <!-- (<span class="sitebit comhead"> <a href="#" class="title"></a></span>) -->
       </td>
     </tr>
     <tr class="article-info">
       <td colspan="2"></td>
-      <td style="padding-top: 2px;">{{ data.votes }} points by {{ data.user.userName }} {{ data.dateAdded }} | hide | {{ data.commentCount }} comments </td>
+      <td style="padding-top: 2px;">{{ data.voteCount }} points by TEST {{ data.createdAt }} | hide | 0 comments </td>
     </tr>
     <tr class="spacer" style="height:5px"></tr>
   </div>
@@ -71,9 +71,7 @@ tr {
     padding-top: 2px !important;
   }
 }
-
-td {
-  a {
+a {
     color: black;
     text-decoration: none;
   }
@@ -82,7 +80,7 @@ td {
     color: #828282;
     text-decoration: none;
   }
-}
+
 
 </style>
 

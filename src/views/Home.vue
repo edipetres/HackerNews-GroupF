@@ -43,11 +43,12 @@ export default {
   },
   methods: {
     fetchArticles() {
+      const vm = this
       const axios = this.$http;
       axios
         .get("/story")
         .then(function(response) {
-          this.articles = response.data;
+          vm.articles = response.data.payload;
         })
         .catch(function(error) {
           // handle error
