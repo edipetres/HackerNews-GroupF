@@ -1,10 +1,21 @@
 const mongoose = require("mongoose");
 const Comment = mongoose.model('Comment')
+const Story = mongoose.model('Story')
 
-// return list of commenst (as mongodb objects)
+// return list of latest comments and their corresponding stories
 exports.getNewComments = async () =>  {
-  // get comments from DB (30 latest)
-  return Comment.find().sort({createdAt: -1}).limit(30)
+  const commentsWithStories = []
+  const comments = await Comment.find().sort({createdAt: -1}).limit(30)
+  for (let i = 0; i < comments.length; i++) {
+    const comment = comments[i];
+    const story = await Story.findOne({sequenceId: comment.parentId})
+
+    commentsWithStories.push({
+      comment,
+      story
+    })
+  }
+  return commentsWithStories
 }
 
 exports.create = async (data) => {

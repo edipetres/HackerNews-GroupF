@@ -1,6 +1,6 @@
 
 require( "./model" );
-const validateToken = require( "../../middlewares/validateToken" );
+const validateUser = require('../../middlewares/validateUser')
 const controller = require( "./controller" );
 
 const express = require( "express" );
@@ -35,7 +35,7 @@ router.post('/login', controller.login)
 *    @apiParam {Number} age  Mandatory age. Minimum 18.
 *    @apiParam {String} sex  Mandatory sex.
 */
-router.put( "/edit", validateToken, controller.edit );
+router.put( "/edit", validateUser, controller.edit );
 
 /**
 *    @apiGroup User
@@ -46,6 +46,6 @@ router.put( "/edit", validateToken, controller.edit );
 *           id:123456789
 *       }
 */
-router.delete( "/delete", validateToken, controller.delete );
+router.delete( "/delete", validateUser, controller.delete );
 
 module.exports = router;

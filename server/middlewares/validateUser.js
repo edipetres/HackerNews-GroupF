@@ -31,7 +31,7 @@ function validateJWT(token, req, res, next) {
         message: "Failed to authenticate token.",
       });
     }
-    req.user = decoded;
+    req.body.username = decoded.username;
     return next();
   });
 }

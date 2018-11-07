@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
 const mongoUrl = process.env.MONGO_URL
+require('../app/story/model')
+require('../app/comment/model')
+
 
 module.exports = function (app) {
+
   mongoose.connect(mongoUrl,  { useNewUrlParser: true })
   mongoose.Promise = global.Promise
 

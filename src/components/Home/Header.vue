@@ -6,7 +6,7 @@
                 <router-link to="/"><img src="/static/img/y18.gif" width="18" height="18" style="border:1px white solid;"></router-link>
             </td>
             <td style="line-height:12pt; height:10px;"><span class="pagetop"><b class="hnname"><router-link to="/">Hacker News</router-link></b>
-              <router-link to="/">new</router-link>| <span class="pagetop"><router-link to="/newcomments">comments</router-link></span> | <a href="show">show</a> | <a href="ask">ask</a> | <a href="jobs">jobs</a> | <a href="submit">submit</a> </span>
+              <router-link to="/">new</router-link>| <span class="pagetop"><router-link to="/newcomments">comments</router-link></span> | <a href="show">show</a> | <a href="ask">ask</a> | <a href="jobs">jobs</a> | <router-link to = "/submit" >submit</router-link></span>
             </td>
             <td style="text-align:right;padding-right:4px;"><span class="pagetop">
                               <div v-if="username">
