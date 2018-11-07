@@ -9,7 +9,7 @@
                                             </a>
                                         </center>
                                     </td>
-                                    <td class="title"><a :href="articleData.url" class="storylink" target="_blank">{{ articleData.title }}</a><span class="sitebit comhead"> (<a :href="articleData.url"><span class="sitestr">{{ articleData.url | trimHost }}</span></a>)</span>
+                                    <td class="title"><a href="#" @click="contentCheck" class="storylink" target="_blank">{{ articleData.title }}</a><span class="sitebit comhead"> (<a :href="articleData.url"><span class="sitestr">{{ articleData.url | trimHost }}</span></a>)</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -114,6 +114,13 @@ export default {
         console.log('resp', response)
         
       })
+    },
+    contentCheck: function(){
+      // check if it has url or other content
+      if (this.articleData.content){
+        this.$router.push('/story')
+      }
+    
     }
   },
   filters: {
@@ -152,7 +159,8 @@ export default {
         return hostname;
       }
     }
-  }
+  },
+  
 };
 </script>
 
