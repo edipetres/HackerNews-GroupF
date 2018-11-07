@@ -16,8 +16,6 @@ exports.newComments = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
-  console.log(req.user);
-  console.log("testestestset");
   try {
     const expectedPayload = {
       post_text: '',
@@ -33,7 +31,7 @@ exports.create = async (req, res) => {
 
     let comment = {}
     comment.content = result.payload.post_text
-    comment.username = req.user.username;
+    comment.username = req.body.username || req.user.username
     comment.sequenceId = result.payload.hanesst_id
     comment.parentId = result.payload.post_parent
     comment.votes = 0
