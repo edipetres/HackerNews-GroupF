@@ -21,21 +21,22 @@ exports.create = async (req, res) => {
   try {
     const expectedPayload = {
       post_text: '',
+      username: '',
       hanesst_id: 0,
       post_parent: 0
     }
     // username and password are encoded in the Authorization header
-    const result = validator(expectedPayload, req.body, ['post_text', 'hanesst_id', 'post_parent'], false)
+    const result = validator(expectedPayload, req.body, ['post_text', 'hanesst_id', 'username', 'post_parent'], false)
     if (result.success !== true) {
       logger.error('Failed to process following request:', req.body)
       return res.preconditionFailed(result.errorMessage)
     }
 
     let comment = {}
-    comment.content = result.payload.post_text
-    comment.username = req.user.username;
-    comment.sequenceId = result.payload.hanesst_id
-    comment.parentId = result.payload.post_parent
+    comment.content = result.payload.post_text;
+    comment.username = result.payload.username;
+    comment.sequenceId = result.payload.hanesst_id;
+    comment.parentId = result.payload.post_parent;
     comment.votes = 0
 
     const savedComment = await commentRepository.create(comment)
