@@ -4,6 +4,11 @@ import base64
 import requests
 import csv
 
+
+file = open('/Users/edmondpetres/Cphbusiness/HackerNewsG7/utils/failed_imports.csv', 'a')
+def log_user(user):
+  file.write(user['username'] + ',' + user['password'])
+
 def sendRequests(user):
   try:
     headers = {'Connection': 'close',
@@ -21,10 +26,13 @@ def sendRequests(user):
 
 
   except requests.exceptions.ConnectionError as e:
+    log_user(user)
     print('Hov, it seems I cannot connect to your system!')
   except requests.exceptions.ReadTimeout as e:
+    log_user(user)
     print('Hov, your system seems to be a bit slow in responding!')
   except Exception as e:
+    log_user(user)
     print('Hov, something else went wrong!')
     print(e)
 
@@ -34,7 +42,7 @@ if __name__ == '__main__':
 
     receiver = '{}/user/registration'.format(host)
 
-    with open('/Users/edmondpetres/Cphbusiness/HackerNewsG7/utils/users.csv') as csv_file:
+    with open('/Users/edmondpetres/Cphbusiness/HackerNewsG7/utils/untracked_users.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = -1
         success_count = 0
