@@ -23,6 +23,8 @@ exports.create = async (req, res) => {
       post_parent: 0
     }
     // username and password are encoded in the Authorization header
+    /* console.log("Here: ",req.body.username + " " + req.user.username); */
+
     const result = validator(expectedPayload, req.body, ['post_text', 'hanesst_id', 'username', 'post_parent'], false)
     if (result.success !== true) {
       logger.error('Failed to process following request:', req.body)
@@ -31,7 +33,8 @@ exports.create = async (req, res) => {
 
     let comment = {}
     comment.content = result.payload.post_text
-    comment.username = req.body.username || req.user.username
+    
+    comment.username = req.body.username;
     comment.sequenceId = result.payload.hanesst_id
     comment.parentId = result.payload.post_parent
     comment.votes = 0
