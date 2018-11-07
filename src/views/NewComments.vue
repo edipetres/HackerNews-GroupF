@@ -1,10 +1,10 @@
 <template>
   <center>
     <div class="newcomments">
-      <table border="0" cellpadding="0" cellspacing="0" width="85%" bgcolor="#f6f6ef">
-        <tbody>
-          <tr class="header-line">
-            <td bgcolor="#ff6600">
+      <table id="hnmain" border="0" cellpadding="0" cellspacing="0" width="85%" bgcolor="#f6f6ef">
+            <tbody>
+                <tr>
+                    <td bgcolor="#ff6600">
               <Header/>
             </td>
           </tr>
@@ -12,7 +12,7 @@
           <tr>
             <td>
               <table border="0" cellpadding="0" cellspacing="0" class="itemlist">
-                <!-- <Article v-for="(article, index) in articles" v-bind:key="index" :data="article" :index="index"></Article> -->
+                <Comment v-for="(comment, index) in comments" v-bind:key="index" :data="comment" :index="index"></Comment> 
               </table>
             </td>
           </tr>
@@ -43,13 +43,14 @@ export default {
     this.fetchComments();
   },
   methods: {
+
     fetchComments() {
       const vm = this;
       this.$http
-        .get("/newcomments")
+      .get("/comment/new")
         .then(function(response) {
           // handle success
-          vm.comments = response.data;
+          vm.comments = response.data.payload;
         })
         .catch(function(error) {
           // handle error

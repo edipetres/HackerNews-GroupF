@@ -15,3 +15,7 @@ exports.create = async (data) => {
 exports.getCommentByStoryId = async (storyId) => {
   return Comment.find({parentId: storyId})
 }
+
+exports.vote = async (commentId) => {
+  return await Comment.findOneAndUpdate({_id: commentId}, {$inc: {votes: 1}})
+}

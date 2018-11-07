@@ -14,9 +14,9 @@ const storySchema = new Schema({
   content: {
     type: String
   },
-  authorId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+  username: {
+    type: String,
+    required: true
   },
   url: {
     type: String,

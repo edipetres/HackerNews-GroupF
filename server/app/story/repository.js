@@ -11,17 +11,25 @@ const createStory = async ( data ) => {
 };
 
 const getStories = async () => {
-    const stories = await Story.find({}).limit(20)
+    const storyLimit = 30
+    const stories = await Story.find({}).sort({createdAt: -1}).limit(storyLimit)
     return stories
 }
 
-const findStory = () => Story.find( );
+const findStory = async (id) => {
+    return await Story.find({sequenceId: id});
+}
 
 const findDetails = ( id ) => Story.findOne( { _id: id } );
+
+const vote = async (storyId) => {
+    return await Story.findOneAndUpdate({_id: storyId}, {$inc: {voteCount: 1}})
+}
 
 module.exports = {
     createStory,
     findStory,
     findDetails,
-    getStories
+    getStories,
+    vote
 };
