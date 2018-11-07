@@ -9,14 +9,17 @@
                                             </a>
                                         </center>
                                     </td>
-                                    <td class="title"><a href="#" @click="contentCheck" class="storylink" target="_blank">{{ articleData.title }}</a><span class="sitebit comhead"> (<a :href="articleData.url"><span class="sitestr">{{ articleData.url | trimHost }}</span></a>)</span>
+                                    <td class="title"><a href="#" @click="contentCheck" class="storylink" >{{ articleData.title }} </a><span class="sitebit comhead"> (<a :href="articleData.url"><span class="sitestr">{{ articleData.url | trimHost }}</span></a>)</span>
+                                    
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
                                     <td class="subtext">
                                         <span class="score">{{ articleData.voteCount }} points</span> by <a href="#" class="hnuser">{{ articleData.username }}</a>  <span class="age">&nbsp;<a href="#">{{ timeSince(articleData.createdAt) }}</a></span> <span ></span> |
-                                        <a href="#">hide</a> | <router-link :to="{ path: '/storycomments', query: { id: articleData.sequenceId }}" >{{ articleData.commentCount }} comments</router-link> </td>
+                                        <a href="#">hide</a> | <router-link :to="{ path: '/storycomments', query: { id: articleData.sequenceId }}" >{{ articleData.commentCount }} comments</router-link> 
+                                        <!-- <a href="#">hide</a> | <router-link :to="{ path: '/story', query: { id: articleData.sequenceId }}">{{ contentCheck(articleData.article) }} -->
+                                        </td>
                                 </tr>
                                 <tr class="spacer" style="height:5px"></tr>
 </div>
@@ -51,76 +54,76 @@ export default {
     return {
       voted: false,
       articleData: {}
-    }
+    };
   },
   created: function() {
-    this.articleData = this.data
-    
+    this.articleData = this.data;
   },
   methods: {
-     timeSince: function(date) {
-  var timeStamp = new Date(date);
-  var seconds = Math.floor((new Date().getTime() - timeStamp.getTime()) / 1000);
-  var interval = Math.floor(seconds / 31536000);
+    timeSince: function(date) {
+      var timeStamp = new Date(date);
+      var seconds = Math.floor(
+        (new Date().getTime() - timeStamp.getTime()) / 1000
+      );
+      var interval = Math.floor(seconds / 31536000);
 
-  if (interval > 1) {
-    return interval + " years ago";
-  }
-  interval = seconds / 31536000;
-  if(interval < 2 && interval >= 1){
-    return Math.floor(interval) + " year ago";
-  }
-  interval = Math.floor(seconds / 2592000);
-  if (interval > 1) {
-    return interval + " months ago";
-  }
-  interval = Math.floor(seconds / 86400);
-  if (interval > 1) {
-    return interval + " days ago";
-  }
-  interval = seconds / 86400;
-  if(interval < 2 && interval >= 1){
-    return Math.floor(interval) + " day ago";
-  }
-  interval = Math.floor(seconds / 3600);
-  if (interval > 1) {
-    return interval + " hours ago";
-  }
-  interval = seconds / 3600;
-  if(interval < 2 && interval >= 1){
-    return Math.floor(interval) + " hour ago";
-  }
-  interval = Math.floor(seconds / 60);
-  if (interval > 1) {
-    return interval + " minutes ago";
-  }
-  interval = seconds / 60;
-  if(interval < 2 && interval >= 1){
-    return Math.floor(interval) + " minute ago";
-  }
-  return Math.floor(seconds) + " seconds ago";
-},
-
-    vote: function () {
-      this.$http.post('/story/vote/' + this.data._id, {
-        token: localStorage.getItem('token')
-      })
-      .then(response => {
-        console.log("test test test");
-        this.articleData = response.data.payload.story
-        this.voted = true
-        })
-      .catch(response => {
-        console.log('resp', response)
-        
-      })
-    },
-    contentCheck: function(){
-      // check if it has url or other content
-      if (this.articleData.content){
-        this.$router.push('/story')
+      if (interval > 1) {
+        return interval + " years ago";
       }
-    
+      interval = seconds / 31536000;
+      if (interval < 2 && interval >= 1) {
+        return Math.floor(interval) + " year ago";
+      }
+      interval = Math.floor(seconds / 2592000);
+      if (interval > 1) {
+        return interval + " months ago";
+      }
+      interval = Math.floor(seconds / 86400);
+      if (interval > 1) {
+        return interval + " days ago";
+      }
+      interval = seconds / 86400;
+      if (interval < 2 && interval >= 1) {
+        return Math.floor(interval) + " day ago";
+      }
+      interval = Math.floor(seconds / 3600);
+      if (interval > 1) {
+        return interval + " hours ago";
+      }
+      interval = seconds / 3600;
+      if (interval < 2 && interval >= 1) {
+        return Math.floor(interval) + " hour ago";
+      }
+      interval = Math.floor(seconds / 60);
+      if (interval > 1) {
+        return interval + " minutes ago";
+      }
+      interval = seconds / 60;
+      if (interval < 2 && interval >= 1) {
+        return Math.floor(interval) + " minute ago";
+      }
+      return Math.floor(seconds) + " seconds ago";
+    },
+
+    vote: function() {
+      this.$http
+        .post("/story/vote/" + this.data._id, {
+          token: localStorage.getItem("token")
+        })
+        .then(response => {
+          console.log("test test test");
+          this.articleData = response.data.payload.story;
+          this.voted = true;
+        })
+        .catch(response => {
+          console.log("resp", response);
+        });
+    },
+    contentCheck: function() {
+      // check if it has url or other content
+      if (this.articleData.content) {
+        this.$router.push({ path: '/story', query: { id: this.articleData.sequenceId }})
+      }
     }
   },
   filters: {
@@ -159,8 +162,7 @@ export default {
         return hostname;
       }
     }
-  },
-  
+  }
 };
 </script>
 

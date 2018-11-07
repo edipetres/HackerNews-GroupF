@@ -48,6 +48,7 @@ export default {
       // fetch the content of the story
     // this.fetchContent();
     this.storyData = this.data
+    console.log(this.$route.query.id)
   }
 }
 </script>
