@@ -76,34 +76,23 @@ export default {
 
     methods: {
         submitStory: function () {
-            console.log(this.storyData.parentId);
-            this.$http.post('/comment/', {
+            this.$http.post('/post', {
                     token: localStorage.getItem('token'),
-                    post_text: this.commentText,
+                    post_title: this.submit.title,
                     hanesst_id: 0,
-                    post_parent: this.storyData.sequenceId
+                    post_text: this.submit.text,
+                    post_url: this.submit.url,
+                    post_type: 'story'
                 })
                 .then(response => {
-                    this.commentData = response.data.payload.comments;
-                    this.$router.go(this.$router.currentRoute);
+                    router.push('home');
                 })
                 .catch(response => {
                     console.log('resp', response)
 
                 })
-            },
-            fetchStoryComments: function () {
-                this.$http.get('/comment/story/' + this.$route.query.id)
-                    .then(response => {
-                        this.storyData = response.data.payload.story[0];
-                        this.commentData = response.data.payload.comments;
-                    })
-                    .catch(response => {
-                        console.log('resp', response)
-
-                    })
             }
-        }
+        
     }
 };
 </script>
