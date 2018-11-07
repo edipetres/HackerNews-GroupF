@@ -85,7 +85,8 @@ export default {
                     post_type: 'story'
                 })
                 .then(response => {
-                    router.push('home');
+                    console.log("Test")
+                    this.$router.push('/');
                 })
                 .catch(response => {
                     console.log('resp', response)
