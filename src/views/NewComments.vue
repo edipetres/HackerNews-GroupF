@@ -45,12 +45,14 @@ export default {
   methods: {
 
     fetchComments() {
-      const vm = this;
+      const vm = this
       this.$http
       .get("/comment/new")
         .then(function(response) {
           // handle success
           vm.comments = response.data.payload;
+          /*console.log(this.comments); */
+        
         })
         .catch(function(error) {
           // handle error
