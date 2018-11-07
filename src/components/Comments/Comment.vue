@@ -1,70 +1,32 @@
 <template>
-<div class="table-wrapper">
-<tr class="athing" id="18376184">
-                                    <td class="ind"></td>
-                                    <td valign="top" class="votelinks">
-                                        <center>
-                                             <a href="#" @click="vote" v-show="!voted">
-                                                <div class="votearrow" title="upvote"></div>
-                                            </a>
-                                        </center>
-                                    </td>
-                                    <td class="default">
-                                        <div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
-          <a href="#" class="hnuser">{{ commentData.username }}</a> <span class="age">&nbsp;<a href="#">{{ timeSince(commentData.createdAt) }}</a></span> <span id=""></span><span class="par"> | <a href="#">parent</a></span>
-                                            <a class="togg" n="1"
-                                                href="javascript:void(0)" onclick="return toggle(event, 18376184)"></a> <span class="storyon"> | on: <router-link :to="{ path: '/storycomments', query: { id: commentData.parentId }}" >{{ commentData.parentId }}</router-link></span>
-                                            </span>
-                                        </div><br>
-                                        <div class="comment">
-                                            <span class="commtext c00">{{ commentData.content }}</span>
-                                            <div class="reply"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="spacer" style="height:15px"></tr> 
-</div>
-
-    <!-- <tbody>
-        <tr class="newstcomments" id="MAKE AN AUTOMATIC ID" >
-            <td class="indline"></td>
-            <td class="votebutton">
+    <div class="table-wrapper">
+        <tr class="athing" id="18376184">
+            <td class="ind"></td>
+            <td valign="top" class="votelinks">
                 <center>
-                    <a id="THE AUTOMATIC ID FROM CLASS" href="SOMETHING">
-                        <div class="votearrow" title="upvote">
-                        </div>
+                    <a href="#" @click="vote" v-show="!voted">
+                        <div class="votearrow" title="upvote"></div>
                     </a>
                 </center>
             </td>
             <td class="default">
-                <div id="div2">
-                    <span class="commhead">
-                        <a href="USER ID" class="commuser">USER ID</a>
-                        <span class="age">
-                            <a href="TIME AGO ID">TIME AGO IT WAS POSTED</a>
-                            <span id="NOT SURE WHAT THIS IS FOR"></span>
-                            <span class="par"></span>
-                                <a href="PARENT ID">PARENT</a>
-                        </span>
-                        <a class="togg" n="1" href="javascript:void(0)" onclick="return toggle(event,SOME ID???"></a>
-                        <span class="storyon">
-                            <a href="TOPIC TITLE ID">TOPIC TITLE ID</a>
-                        </span>
+                <div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+                        <a href="#" class="hnuser">{{ commentData.username }}</a> <span class="age">&nbsp;<a href="#">{{
+                                timeSince(commentData.createdAt) }}</a></span> <span id=""></span><span class="par"> |
+                            <a href="#">parent</a></span>
+                        <a class="togg" n="1" href="javascript:void(0)" onclick="return toggle(event, 18376184)"></a>
+                        <span class="storyon"> | on: <router-link :to="{ path: '/storycomments', query: { id: commentData.parentId }}">{{
+                                commentData.parentId }}</router-link></span>
                     </span>
-                </div>
-                <br>
-                <div>
-                    <span class="commtext c00">
-                        USER TEXT
-                        <p>
-
-                        </p>
-                        <div class="reply"></div>
-                    </span>                    
+                </div><br>
+                <div class="comment">
+                    <span class="commtext c00">{{ commentData.content }}</span>
+                    <div class="reply"></div>
                 </div>
             </td>
         </tr>
-    </tbody> -->
+        <tr class="spacer" style="height:15px"></tr>
+    </div>
 </template>
 
 <script>

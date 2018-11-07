@@ -1,65 +1,71 @@
 <template>
-<center>
-   <div class="storycomments">
-    <table id="hnmain" border="0" cellpadding="0" cellspacing="0" width="85%" bgcolor="#f6f6ef">
+  <center>
+    <div class="storycomments">
+      <table id="hnmain" border="0" cellpadding="0" cellspacing="0" width="85%" bgcolor="#f6f6ef">
         <tbody>
-            <tr>
-                <td bgcolor="#ff6600">
-                    <Header/>
-                </td>
-            </tr>
-            <tr style="height:10px"></tr>
-            <tr>
-                <td>
-                    <table class="fatitem" border="0">
-                        <tbody>
-                            <tr class="athing" id="18376741">
-                                <td align="right" valign="top" class="title"><span class="rank"></span></td>
-                                <td valign="top" class="votelinks">
-                                    <center>
-                                            <a href="#" @click="vote" v-show="!voted">
-                                                <div class="votearrow" title="upvote"></div>
-                                            </a>
-                                    </center>
-                                </td>
-                                <td class="title"><a :href="storyData.url" class="storylink" target="_blank">{{ storyData.title }}</a><span class="sitebit comhead"> (<a :href="storyData.url"><span class="sitestr">{{ storyData.url | trimHost }}</span></a>)</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"></td>
-                                <td class="subtext">
-                                    <span class="score">{{ storyData.voteCount }} points</span> by <a href="#" class="hnuser">{{ storyData.username }}</a>  <span class="age">&nbsp;<a href="#">{{ timeSince(storyData.createdAt) }}</a></span> <span ></span> |
-                                        <a href="#">hide</a> | <a href="#" class="hnpast">past</a> | <a href="#">web</a> | <a href="#">favorite</a> | <router-link :to="{ path: '/storycomments', query: { id: storyData.sequenceId }}" >{{ storyData.commentCount }} comments</router-link></td>
-                            </tr>
-                            <tr style="height:10px"></tr>
-                            <tr>
-                                <td colspan="2"></td>
-                                <td>
-                                    <div>
-                                    <textarea name="text" rows="6" cols="60" v-model="commentText"></textarea>
-                                    <br><br><input type="submit" value="add comment" @click="postCommentParent"></div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <br><br>
-                    <table border="0" class="comment-tree">
-                        <StoryComment v-for="(comment, index) in commentData" v-bind:key="index" :data="comment" :index="index"></StoryComment> 
-                    </table>
-                </td>
-            </tr>
+          <tr>
+            <td bgcolor="#ff6600">
+              <Header />
+            </td>
+          </tr>
+          <tr style="height:10px"></tr>
+          <tr>
+            <td>
+              <table class="fatitem" border="0">
+                <tbody>
+                  <tr class="athing" id="18376741">
+                    <td align="right" valign="top" class="title"><span class="rank"></span></td>
+                    <td valign="top" class="votelinks">
+                      <center>
+                        <a href="#" @click="vote" v-show="!voted">
+                          <div class="votearrow" title="upvote"></div>
+                        </a>
+                      </center>
+                    </td>
+                    <td class="title"><a :href="storyData.url" class="storylink" target="_blank">{{ storyData.title }}</a><span
+                        class="sitebit comhead"> (<a :href="storyData.url"><span class="sitestr">{{ storyData.url |
+                            trimHost }}</span></a>)</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"></td>
+                    <td class="subtext">
+                      <span class="score">{{ storyData.voteCount }} points</span> by <a href="#" class="hnuser">{{
+                        storyData.username }}</a> <span class="age">&nbsp;<a href="#">{{ timeSince(storyData.createdAt)
+                          }}</a></span> <span></span> |
+                      <a href="#">hide</a> | <a href="#" class="hnpast">past</a> | <a href="#">web</a> | <a href="#">favorite</a>
+                      | <router-link :to="{ path: '/storycomments', query: { id: storyData.sequenceId }}">{{
+                        storyData.commentCount }} comments</router-link>
+                    </td>
+                  </tr>
+                  <tr style="height:10px"></tr>
+                  <tr>
+                    <td colspan="2"></td>
+                    <td>
+                      <div>
+                        <textarea name="text" rows="6" cols="60" v-model="commentText"></textarea>
+                        <br><br><input type="submit" value="add comment" @click="postCommentParent"></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <br><br>
+              <table border="0" class="comment-tree">
+                <StoryComment v-for="(comment, index) in commentData" v-bind:key="index" :data="comment" :index="index"></StoryComment>
+              </table>
+            </td>
+          </tr>
         </tbody>
-    </table>
-</div>
-</center>
+      </table>
+    </div>
+  </center>
 </template>
 
 <script>
-
-
 // @ is an alias to /src
 import Header from "@/components/Home/Header.vue";
 import StoryComment from "@/components/Comments/StoryComment.vue";
+import {timeSince} from '../assets/helper.js'
 
 export default {
   name: "storycomments",
@@ -67,103 +73,62 @@ export default {
     Header,
     StoryComment
   },
-  data: function() {
+  data: function () {
     return {
-        voted : false,
-     storyData : {},
-     commentData : [],
-     commentText: ""
+      voted: false,
+      storyData: {},
+      commentData: [],
+      commentText: ""
     };
   },
   created() {
-    
+
     this.fetchStoryComments();
   },
   methods: {
-    timeSince: function(date) {
-  var timeStamp = new Date(date);
-  var seconds = Math.floor((new Date().getTime() - timeStamp.getTime()) / 1000);
-  var interval = Math.floor(seconds / 31536000);
-
-  if (interval > 1) {
-    return interval + " years ago";
-  }
-  interval = seconds / 31536000;
-  if(interval < 2 && interval >= 1){
-    return Math.floor(interval) + " year ago";
-  }
-  interval = Math.floor(seconds / 2592000);
-  if (interval > 1) {
-    return interval + " months ago";
-  }
-  interval = Math.floor(seconds / 86400);
-  if (interval > 1) {
-    return interval + " days ago";
-  }
-  interval = seconds / 86400;
-  if(interval < 2 && interval >= 1){
-    return Math.floor(interval) + " day ago";
-  }
-  interval = Math.floor(seconds / 3600);
-  if (interval > 1) {
-    return interval + " hours ago";
-  }
-  interval = seconds / 3600;
-  if(interval < 2 && interval >= 1){
-    return Math.floor(interval) + " hour ago";
-  }
-  interval = Math.floor(seconds / 60);
-  if (interval > 1) {
-    return interval + " minutes ago";
-  }
-  interval = seconds / 60;
-  if(interval < 2 && interval >= 1){
-    return Math.floor(interval) + " minute ago";
-  }
-  return Math.floor(seconds) + " seconds ago";
-},
-      vote: function () {
+    timeSince,
+    vote: function () {
       this.$http.post('/story/vote/' + this.storyData._id, {
-        token: localStorage.getItem('token')
-      })
-      .then(response => {
-        console.log("test test test");
-        this.storyData = response.data.payload.story
-        this.voted = true
+          token: localStorage.getItem('token')
         })
-      .catch(response => {
-        console.log('resp', response)
-        
-      })
+        .then(response => {
+          console.log("test test test");
+          this.storyData = response.data.payload.story
+          this.voted = true
+        })
+        .catch(response => {
+          console.log('resp', response)
+
+        })
     },
-    postCommentParent: function(){
+    postCommentParent: function () {
       console.log(this.storyData.parentId);
-     this.$http.post('/comment/', {
-        token: localStorage.getItem('token'),
-        post_text: this.commentText,
-        hanesst_id: 0,
-        post_parent: this.storyData.sequenceId        
-      })
-      .then(response => {
-        this.commentData = response.data.payload.comments;
-        this.$router.go(this.$router.currentRoute);
+      this.$http.post('/comment/', {
+          token: localStorage.getItem('token'),
+          post_text: this.commentText,
+          hanesst_id: 0,
+          post_parent: this.storyData.sequenceId
         })
-      .catch(response => {
-        console.log('resp', response)
-        
-      })
+        .then(response => {
+          this.commentData = response.data.payload.comments;
+          this.$router.go(this.$router.currentRoute);
+        })
+        .catch(response => {
+          console.log('resp', response)
+
+        })
     },
     fetchStoryComments: function () {
       this.$http.get('/comment/story/' + this.$route.query.id)
-      .then(response => {
-        this.storyData = response.data.payload.story[0];
-        this.commentData = response.data.payload.comments;
+        .then(response => {
+          this.storyData = response.data.payload.story[0];
+          this.commentData = response.data.payload.comments;
         })
-      .catch(response => {
-        console.log('resp', response)
-        
-      })
-  }
+        .catch(response => {
+          console.log('resp', response)
+
+        })
+    }
   },
   filters: {
     trimHost: url => {
