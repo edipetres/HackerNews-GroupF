@@ -3,8 +3,8 @@ const Comment = mongoose.model('Comment')
 
 // return list of commenst (as mongodb objects)
 exports.getNewComments = async () =>  {
-  // get comments from DB (20 latest)
-  return Comment.find().sort({createdAt: -1}).limit(20)
+  // get comments from DB (30 latest)
+  return Comment.find().sort({createdAt: -1}).limit(30)
 }
 
 exports.create = async (data) => {

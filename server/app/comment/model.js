@@ -8,7 +8,6 @@ const commentSchema = new Schema({
 	},
 	sequenceId: {
 		type: Number,
-		required: true
 	},
 	parentId: {
 		type: Number, 

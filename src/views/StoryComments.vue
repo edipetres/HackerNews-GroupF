@@ -103,11 +103,12 @@ export default {
     },
     postCommentParent: function () {
       console.log(this.storyData.parentId);
-      this.$http.post('/comment/', {
+      this.$http.post('/post', {
           token: localStorage.getItem('token'),
           post_text: this.commentText,
           hanesst_id: 0,
-          post_parent: this.storyData.sequenceId
+          post_parent: this.storyData.sequenceId,
+          post_type: 'comment'
         })
         .then(response => {
           this.commentData = response.data.payload.comments;
