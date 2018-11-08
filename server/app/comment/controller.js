@@ -8,6 +8,7 @@ const logger = console
 exports.newComments = async (req, res) => {
   try {
     const comments = await commentRepository.getNewComments()
+    
     return res.success(comments)
   } catch (err) {
     res.serverError(err)
