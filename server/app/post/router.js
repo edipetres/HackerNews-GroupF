@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const storyController = require('../story/controller')
 const commentController = require('../comment/controller')
+const pollPolloptController = require('../pollPollopt/controller')
 
 // Distribute incoming posts
 // Endpoint: website.com/post
@@ -20,10 +21,10 @@ router.post('/', (req, res) => {
       commentController.create(req, res)
       break;
     case 'poll':
-      res.status(501).send()
+      pollPolloptController.create(req, res)
       break;
     case 'pollopt':
-      res.status(501).send()
+      pollPolloptController.create(req, res)
       break;
     default:
       // respond here in none of the above post types matched
