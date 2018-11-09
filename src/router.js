@@ -34,8 +34,7 @@ export default new Router({
     {
       path: '/storycomments',
       component: StoryComments
-    }
-    ,
+    },
     {
       path: '/submit',
       component: Submit
