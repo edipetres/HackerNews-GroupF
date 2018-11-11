@@ -9,7 +9,7 @@
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
     "start": "concurrently -n 'frontend,backend' -c 'bgGreen.black,bgBlue.black' 'npm run serve' 'nodemon app.js'",
-    "go": "node app.js | tar -xvzf utils/prometheus-2.5.0.linux-amd64.tar.gz -C utils/ && cd utils/prometheus-2.5.0.linux-amd64 && sudo ./prometheus --config.file=prometheus.yml"
+    "go": "node app.js | sudo rm -rf utils/prometheus-2.5.0.linux-amd64 && sudo tar -xvzf utils/prometheus-2.5.0.linux-amd64.tar.gz -C utils/ && cd utils/prometheus-2.5.0.linux-amd64 && sudo ./prometheus --config.file=prometheus.yml"
   },
   "dependencies": {
     "axios": "^0.18.0",
