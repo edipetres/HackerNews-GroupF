@@ -33,7 +33,7 @@ require('./server/config/mongoose')(app) // Initialize mongoDB
 require('./server/app/index')(app) // Initialize router
 app.use('/latest', require('./server/app/digest/router'))
 
-app.get('/', (req, res) => res.send('Hello World is deployed by the CI chain!'))
+app.get('/', (req, res) => res.send('Hackernews project backend from group F - Cphbusiness 2018 Fall'))
 app.use('/status', status)
 
 
