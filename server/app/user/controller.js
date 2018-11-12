@@ -1,12 +1,12 @@
 const extractObject = require("../../utilities/").extractObject;
-const logger = console
+const logger = require('../../utilities/logger')
 const repository = require("./repository");
 const payloadCheck = require('payload-validator')
 const jwt = require('jsonwebtoken')
 
 exports.register = async (req, res) => {
   // Validate payload
-  logger.log('Saving user:', req.body.username)
+  logger.info('Saving user: ' + req.body.username)
   const result = payloadCheck.validator(req.body, { username: '', password: ''}, ['username', 'password'], false)
   if (result.success !== true) return res.preconditionFailed(result.response.errorMessage)
 
@@ -73,13 +73,12 @@ exports.delete = async (req, res) => {
   try {
     const user = await repository.findUser(req.user.id);
     const deletedUser = await repository.deleteUser(user, req.body);
-    logger.log(deletedUser);
-    res.success(extractObject(
+    logger.info('Deleted user ' + deletedUser);
+    return res.success(extractObject(
       deletedUser,
       ["id", "username"],
     ));
   } catch (err) {
-    logger.log(err);
-    res.send(err);
+    return res.serverError(err);
   }
 };

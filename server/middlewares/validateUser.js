@@ -48,7 +48,7 @@ async function validateAuthHeader(token, req, res, next) {
       return next()
     }
   } catch (error) {
-    logger.log(error)
+    logger.info('Error in validateAuthHeader' + error)
     return res.unauthorized()
   }
 }

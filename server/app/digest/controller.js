@@ -8,8 +8,7 @@ exports.getLatestDigest = async function (req, res) {
     const latestId = await findLatestId()
     res.send(latestId.toString())
   } catch (error) {
-    logger.error("Error in server.digest.controller " + res.serverError(error))
-    
+    return res.serverError('Error in server.digest.controller ' + error)
   } finally {
     client.close()
   }
@@ -31,7 +30,7 @@ async function findLatestId() {
   }
 
   if (latestIds.length === 0) {
-    return logger.log('Latest digest: Id not found')
+    return logger.error('Latest digest: Id not found')
   }
 
   return Math.max(...latestIds).toString()

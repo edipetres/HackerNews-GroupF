@@ -24,11 +24,10 @@ exports.create = async (req, res) => {
       post_parent: 0
     }
     // username and password are encoded in the Authorization header
-    /* console.log("Here: ",req.body.username + " " + req.user.username); */
 
     const result = validator(expectedPayload, req.body, ['post_text', 'hanesst_id', 'username', 'post_parent'], false)
     if (result.success !== true) {
-      logger.error('Failed to process following request:', req.body)
+      logger.error('Failed to process following request:' + req.body)
       return res.preconditionFailed(result.errorMessage)
     }
 
@@ -43,7 +42,7 @@ exports.create = async (req, res) => {
     const savedComment = await commentRepository.create(comment)
     return res.success(extractObject(savedComment, ['_id', 'username']))
   } catch (err) {
-    logger.error("Error in Server.app.comment " + res.serverError())
+    return res.serverError(err)
   }
 }
 
@@ -80,6 +79,6 @@ exports.vote = async (req, res) => {
       comment: updatedComment
     })
   } catch (err) {
-    logger.error("Error message in app.controller" + err.message)
+    return res.serverError(err)
   }
 }
