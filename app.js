@@ -2,11 +2,13 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
-let logger = console
+let logger = require('./server/utilities/logger')
 
 const customResponses = require('./server/middlewares/customResponses')
 
 const status = require('./server/status')
+
+logger.info("Testing winston")
 
 const ENV = process.env.NODE_ENV !== 'production' ? 'development' : 'production'
 if (ENV !== 'production') {
@@ -28,6 +30,7 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json())
 app.use(customResponses)
+
 
 require('./server/config/mongoose')(app) // Initialize mongoDB
 require('./server/app/index')(app) // Initialize router
