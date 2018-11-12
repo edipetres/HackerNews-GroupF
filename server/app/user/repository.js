@@ -11,7 +11,7 @@ const saveUser = (data) => {
 const loginUser = async data => {
   const {username, password} = data
   const savedUser = await User.findOne({username}) // get user from DB
-  if (!savedUser) throw new Error('Username not found.');
+  if (!savedUser) throw new Error('Username not found:', username);
   
   const passwordMatch = savedUser.schema.methods.checkPass(savedUser.password, password)
   if (passwordMatch !== true) throw new Error('Username/password missmatch.')

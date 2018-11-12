@@ -18,9 +18,8 @@ async function findLatestId() {
   const db = await getDBConnection()
   const latestIds = ['0']
 
-  const collectionsToCrawl = ['comments', 'stories'] // TODO: add 'poll', 'pollopt' when db is done
+  const collectionsToCrawl = ['comments', 'stories', 'pollpollopts']
 
-  
   for (const collectionName of collectionsToCrawl) {
     try {
       let latestElement = await db.collection(collectionName).find({}).sort({createdAt: -1}).limit(1).toArray()
