@@ -40,4 +40,4 @@ app.get('/', (req, res) => res.send('Hackernews project backend from group F - C
 app.use('/status', status)
 
 
-app.listen(port, () => logger.log(`REST API listening on port ${port}!`))
+app.listen(port, () => logger.info(`REST API listening on port ${port}!`))
