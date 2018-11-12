@@ -1,8 +1,5 @@
 const mongoose = require('mongoose')
 const mongoUrl = process.env.MONGO_URL
-require('../app/story/model')
-require('../app/comment/model')
-require('../app/pollPollopt/model')
 
 module.exports = function (app) {
 
@@ -15,6 +12,11 @@ module.exports = function (app) {
 
   if (app) {
     app.set('mongoose', mongoose)
+
+    // Require models here to be available for loading later
+    require('../app/story/model')
+    require('../app/comment/model')
+    require('../app/pollPollopt/model')
   }
 }
 
