@@ -3,7 +3,7 @@ const commentRepository = require('./repository')
 const extractObject = require('../../utilities/index').extractObject
 const validateId = require('../../utilities/index').validateId
 const validator = require('../../utilities/validator')
-const logger = console
+const logger = require('../../utilities/logger')
 
 exports.newComments = async (req, res) => {
   try {
@@ -80,6 +80,6 @@ exports.vote = async (req, res) => {
       comment: updatedComment
     })
   } catch (err) {
-    res.preconditionFailed(err.message)
+    logger.error("Error message in app.controller" + err.message)
   }
 }

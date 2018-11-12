@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
-let logger = require('./server/utilities/logger')
+const logger = require('./server/utilities/logger')
 
 const customResponses = require('./server/middlewares/customResponses')
 

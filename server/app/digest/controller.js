@@ -8,7 +8,8 @@ exports.getLatestDigest = async function (req, res) {
     const latestId = await findLatestId()
     res.send(latestId.toString())
   } catch (error) {
-    res.serverError(error)
+    logger.error("Error in server.digest.controller " + res.serverError(error))
+    
   } finally {
     client.close()
   }

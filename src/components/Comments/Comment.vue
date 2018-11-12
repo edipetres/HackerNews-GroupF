@@ -30,6 +30,8 @@
 </template>
 
 <script>
+let logger = require('./server/utilities/logger')
+
 export default {
   props: ["data", "index"],
   data: function() {
@@ -93,7 +95,8 @@ export default {
         this.voted = true
         })
       .catch(response => {
-        console.log('resp', response)
+        
+        console.log('resp' + response)
         
       })
     },
