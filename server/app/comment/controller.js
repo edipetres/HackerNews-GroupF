@@ -43,7 +43,7 @@ exports.create = async (req, res) => {
     const savedComment = await commentRepository.create(comment)
     return res.success(extractObject(savedComment, ['_id', 'username']))
   } catch (err) {
-    res.serverError()
+    logger.error("Error in Server.app.comment " + res.serverError())
   }
 }
 

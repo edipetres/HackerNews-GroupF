@@ -30,7 +30,6 @@
 </template>
 
 <script>
-let logger = require('./server/utilities/logger')
 
 export default {
   props: ["data", "index"],
