@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { timeSince } from "../../assets/helper.js";
 export default {
   props: ["data", "index"],
   data: function() {
@@ -60,76 +61,39 @@ export default {
     this.articleData = this.data;
   },
   methods: {
-    timeSince: function(date) {
-      var timeStamp = new Date(date);
-      var seconds = Math.floor(
-        (new Date().getTime() - timeStamp.getTime()) / 1000
-      );
-      var interval = Math.floor(seconds / 31536000);
-
-      if (interval > 1) {
-        return interval + " years ago";
-      }
-      interval = seconds / 31536000;
-      if (interval < 2 && interval >= 1) {
-        return Math.floor(interval) + " year ago";
-      }
-      interval = Math.floor(seconds / 2592000);
-      if (interval > 1) {
-        return interval + " months ago";
-      }
-      interval = Math.floor(seconds / 86400);
-      if (interval > 1) {
-        return interval + " days ago";
-      }
-      interval = seconds / 86400;
-      if (interval < 2 && interval >= 1) {
-        return Math.floor(interval) + " day ago";
-      }
-      interval = Math.floor(seconds / 3600);
-      if (interval > 1) {
-        return interval + " hours ago";
-      }
-      interval = seconds / 3600;
-      if (interval < 2 && interval >= 1) {
-        return Math.floor(interval) + " hour ago";
-      }
-      interval = Math.floor(seconds / 60);
-      if (interval > 1) {
-        return interval + " minutes ago";
-      }
-      interval = seconds / 60;
-      if (interval < 2 && interval >= 1) {
-        return Math.floor(interval) + " minute ago";
-      }
-      return Math.floor(seconds) + " seconds ago";
-    },
+    timeSince,
 
     vote: function() {
-      this.$http
-        .post("/story/vote/" + this.data._id, {
-          token: localStorage.getItem("token")
-        })
-        .then(response => {
-          console.log("test test test");
-          this.articleData = response.data.payload.story;
-          this.voted = true;
-        })
-        .catch(response => {
-          console.log("resp", response);
-        });
+      if (localStorage.getItem("token")) {
+        this.$http
+          .post("/story/vote/" + this.data._id, {
+            token: localStorage.getItem("token")
+          })
+          .then(response => {
+            console.log("test test test");
+            this.articleData = response.data.payload.story;
+            this.voted = true;
+          })
+          .catch(response => {
+            console.log("resp", response);
+          });
+      } else {
+        this.$router.push("login");
+      }
     },
     contentCheck: function() {
       // check if it has url or other content
       if (this.articleData.content) {
-        this.$router.push({ path: '/storycomments', query: { id: this.articleData.sequenceId }})
+        this.$router.push({
+          path: "/storycomments",
+          query: { id: this.articleData.sequenceId }
+        });
       } else {
         if (!/^(https?:)?\/\//i.test(this.articleData.url)) {
-            window.location = 'http://' + this.articleData.url;
-          } else {
-            window.location = this.articleData.url;
-          }
-          
+          window.location = "http://" + this.articleData.url;
+        } else {
+          window.location = this.articleData.url;
+        }
       }
     }
   },

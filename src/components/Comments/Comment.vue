@@ -30,42 +30,45 @@
 </template>
 
 <script>
-import {timeSince} from '../../assets/helper.js'
+import { timeSince } from "../../assets/helper.js";
 export default {
   props: ["data", "index"],
   data: function() {
     return {
       voted: false,
       commentData: {}
-    }
+    };
   },
   created: function() {
-    this.commentData = this.data
+    this.commentData = this.data;
   },
   methods: {
-      timeSince,
-      vote: function () {
-      this.$http.post('/comment/vote/' + this.commentData._id, {
-        token: localStorage.getItem('token')
-      })
-      .then(response => {
-        this.commentData = response.data.comment
-        this.voted = true
-        })
-      .catch(response => {
-        
-        console.log('resp' + response)
-        
-      })
-    },
-      timeAgo: function () {
-          var time = new Date(0);
-          var seconds = time.getMilliseconds(); //1440516958
-          return time;
+    timeSince,
+    vote: function() {
+      if (localStorage.getItem("token")) {
+        this.$http
+          .post("/comment/vote/" + this.commentData._id, {
+            token: localStorage.getItem("token")
+          })
+          .then(response => {
+            this.commentData = response.data.comment;
+            this.voted = true;
+          })
+          .catch(response => {
+            console.log("resp" + response);
+          });
+      } else {
+        this.$router.push("login");
       }
+    },
+    timeAgo: function() {
+      var time = new Date(0);
+      var seconds = time.getMilliseconds(); //1440516958
+      return time;
+    }
   }
   //testingrharambe
-}
+};
 </script>
 
 

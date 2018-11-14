@@ -37,33 +37,37 @@
                             </tbody>
                             </template>
 <script>
-import {timeSince} from '../../assets/helper.js'
+import { timeSince } from "../../assets/helper.js";
 export default {
   props: ["data", "index"],
   data: function() {
     return {
       voted: false,
       commentData: {}
-    }
+    };
   },
   created: function() {
-    this.commentData = this.data
+    this.commentData = this.data;
   },
   methods: {
-      timeSince,
-      vote: function () {
-      this.$http.post('/comment/vote/' + this.commentData._id, {
-        token: localStorage.getItem('token')
-      })
-      .then(response => {
-        this.commentData = response.data.comment
-        this.voted = true
-        })
-      .catch(response => {
-        console.log('resp', response)
-        
-      })
+    timeSince,
+    vote: function() {
+      if (localStorage.getItem("token")) {
+        this.$http
+          .post("/comment/vote/" + this.commentData._id, {
+            token: localStorage.getItem("token")
+          })
+          .then(response => {
+            this.commentData = response.data.comment;
+            this.voted = true;
+          })
+          .catch(response => {
+            console.log("resp", response);
+          });
+      } else {
+        this.$router.push("login");
+      }
     }
   }
-}
+};
 </script>
