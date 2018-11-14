@@ -88,18 +88,41 @@ export default {
   },
   created() {
     this.fetchStoryComments();
+    
   },
   methods: {
+    fetchStoryComments: function() {
+      this.$http
+        .get("/comment/story/" + this.$route.query.id)
+        .then(response => {
+          this.storyData = response.data.payload.story[0];
+          this.commentData = response.data.payload.comments;
+          this.checkVote();
+        })
+        .catch(response => {
+          console.log("resp", response);
+        });
+    },
     timeSince,
+    checkVote: function(){
+      if(localStorage.getItem("votes")){
+        const votes =  JSON.parse(localStorage.getItem("votes"));
+        if(votes.includes(this.storyData.sequenceId)){
+          this.voted = true;
+        }
+      } 
+    }, 
     vote: function() {
       if (localStorage.getItem("token")) {
         this.$http
-          .post("/story/vote/" + this.storyData._id, {
+          .post("/story/vote/" + this.storyData.sequenceId, {
             token: localStorage.getItem("token")
           })
           .then(response => {
-            console.log("test test test");
             this.storyData = response.data.payload.story;
+             const votes =  JSON.parse(localStorage.getItem("votes"));
+            votes.push(this.storyData.sequenceId);
+            localStorage.setItem("votes", JSON.stringify(votes));
             this.voted = true;
           })
           .catch(response => {
@@ -134,17 +157,7 @@ export default {
         this.$router.push("login");
       }
     },
-    fetchStoryComments: function() {
-      this.$http
-        .get("/comment/story/" + this.$route.query.id)
-        .then(response => {
-          this.storyData = response.data.payload.story[0];
-          this.commentData = response.data.payload.comments;
-        })
-        .catch(response => {
-          console.log("resp", response);
-        });
-    }
+    
   },
   filters: {
     trimHost: url => {

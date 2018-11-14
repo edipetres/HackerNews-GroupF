@@ -14,7 +14,16 @@ exports.newComments = async (req, res) => {
     res.serverError(err)
   }
 }
-
+exports.checkUserVoted = async (req, res) => {
+  try {
+    const vote = await repository.checkVote(req.body.hanesst_id)
+    return res.success({
+      answer: vote[0].voters.includes(req.body.username)
+    })
+  } catch (err) {
+    return res.serverError(err)
+  }
+}
 exports.create = async (req, res) => {
   try {
     const expectedPayload = {
@@ -67,14 +76,16 @@ exports.getCommentsByStory = async (req, res) => {
 }
 
 exports.vote = async (req, res) => {
+  
   const commentId = req.params.id
   const validationResult = validateId(commentId)
+  
   if (validationResult.success !== true) {
     return res.preconditionFailed(validationResult.errorMessage)
   }
-  
+  console.log(commentId, req.body.username)
   try {
-    const updatedComment = await commentRepository.vote(commentId)
+    const updatedComment = await commentRepository.vote(commentId, req.body.username)
     res.success({
       comment: updatedComment
     })

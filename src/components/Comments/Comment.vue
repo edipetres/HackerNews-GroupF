@@ -41,17 +41,29 @@ export default {
   },
   created: function() {
     this.commentData = this.data;
+    this.checkVote();
   },
   methods: {
+    checkVote: function(){
+      if(localStorage.getItem("cvotes")){
+        const votes =  JSON.parse(localStorage.getItem("cvotes"));
+        if(votes.includes(this.commentData.sequenceId)){
+          this.voted = true;
+        }
+      } 
+    }, 
     timeSince,
     vote: function() {
       if (localStorage.getItem("token")) {
         this.$http
-          .post("/comment/vote/" + this.commentData._id, {
+          .post("/comment/vote/" + this.commentData.sequenceId, {
             token: localStorage.getItem("token")
           })
           .then(response => {
-            this.commentData = response.data.comment;
+            this.commentData = response.data.payload.comment;
+            const votes =  JSON.parse(localStorage.getItem("cvotes"));
+            votes.push(this.commentData.sequenceId);
+            localStorage.setItem("cvotes", JSON.stringify(votes));
             this.voted = true;
           })
           .catch(response => {
