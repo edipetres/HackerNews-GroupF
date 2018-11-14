@@ -294,7 +294,7 @@ pre:hover {
 only screen and (min-device-pixel-ratio: 2) {
     .votearrow {
         background-size: 10px;
-        background-image: url("/static/img/grayarrow2x.gif");
+        background-image: url("/static/img/grayarrow.gif");
     }
 }
 
