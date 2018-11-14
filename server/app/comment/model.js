@@ -17,9 +17,9 @@ const commentSchema = new Schema({
 		type: String,
 		required: true
 	},
-	votes: {
-		type: Number,
-		required: true
+	voters: {
+	  type: Array,
+	  required: true
 	}
 }, {
 	timestamps: true,
