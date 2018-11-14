@@ -75,6 +75,7 @@ export default {
 
     methods: {
         submitStory: function () {
+            if(((this.submit.title && this.submit.text) && !this.submit.url) || ((this.submit.title && this.submit.url)&& !this.submit.text)){
             this.$http.post('/post', {
                     token: localStorage.getItem('token'),
                     post_title: this.submit.title,
@@ -91,6 +92,10 @@ export default {
 
                 })
             }
+            else {
+                alert("Some fields are missing or are too many fields entered. Input only 'Title' and 'Text' or 'Title' and 'URL'" );
+            }
+        }
         
     }
 };
