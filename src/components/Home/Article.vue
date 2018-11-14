@@ -124,7 +124,12 @@ export default {
       if (this.articleData.content) {
         this.$router.push({ path: '/storycomments', query: { id: this.articleData.sequenceId }})
       } else {
-        window.location = this.articleData.url;
+        if (!/^(https?:)?\/\//i.test(this.articleData.url)) {
+            window.location = 'http://' + this.articleData.url;
+          } else {
+            window.location = this.articleData.url;
+          }
+          
       }
     }
   },
