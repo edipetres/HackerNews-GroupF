@@ -44,7 +44,10 @@ exports.login = async (req, res) => {
     const token = generateJWT(savedUser)
     return res.json({
       success: true,
-      token: token
+      token: token,
+      votes: savedUser.votedStories,
+      cvotes: savedUser.votedComments
+
     })
   } catch (err) {
     res.preconditionFailed(err.message)

@@ -59,19 +59,29 @@ export default {
   },
   created: function() {
     this.articleData = this.data;
+    this.checkVote();
   },
   methods: {
     timeSince,
-
+     checkVote: function(){
+      if(localStorage.getItem("votes")){
+        const votes =  JSON.parse(localStorage.getItem("votes"));
+        if(votes.includes(this.data.sequenceId)){
+          this.voted = true;
+        }
+      } 
+    }, 
     vote: function() {
       if (localStorage.getItem("token")) {
         this.$http
-          .post("/story/vote/" + this.data._id, {
+          .post("/story/vote/" + this.data.sequenceId, {
             token: localStorage.getItem("token")
           })
           .then(response => {
-            console.log("test test test");
             this.articleData = response.data.payload.story;
+            const votes =  JSON.parse(localStorage.getItem("votes"));
+            votes.push(this.articleData.sequenceId);
+            localStorage.setItem("votes", JSON.stringify(votes));
             this.voted = true;
           })
           .catch(response => {

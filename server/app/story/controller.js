@@ -12,7 +12,7 @@ exports.create = async (req, res) => {
     story.sequenceId = hanesst_id
     story.username = username // TODO get _id of user here to link it with user object in db
     story.url = post_url // making it not required - not all stories have a post url. See student_tester: hanesst_id: 363
-    story.voteCount = 0
+    story.voters = []
 
     const savedStory = await repository.createStory(story);
     return res.send(utilities.extractObject(
@@ -67,7 +67,7 @@ exports.vote = async (req, res) => {
   }
   
   try {
-    const updatedStory = await repository.vote(storyId)
+    const updatedStory = await repository.vote(storyId, req.body.username)
     res.success({
       story: updatedStory
     })
