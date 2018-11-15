@@ -34,20 +34,20 @@ The following charts and answers are the collected results from our questionnair
 ![alt text](https://github.com/DarkSideMatters/UFO/blob/master/chart2.png)
 ![alt text](https://github.com/DarkSideMatters/UFO/blob/master/chart3.png)
 
-What do you find most helpful and why? 3 responses
+### What do you find most helpful and why? 3 responses
 1.Toolstack, to get a quick and detailed overview of what tools have been used in the project, to set the expectations.
 2.The DB Scheme because it gives a really easy overview of the database
 3.Short descriptions
 
-What do you find least helpful and why?3 responses
+### What do you find least helpful and why? 3 responses
 1.General just a lack of deeper details.
 2.API-endpoints documentation is missing
 3.Confusing ordering of info
 
-Is there any information related to the operational documentation that you find lacking?(please add as many entries as you need)1 response
+### Is there any information related to the operational documentation that you find lacking?(please add as many entries as you need)1 response
 1.Toolstack (like the generel document) has not been updated to reflect the almost 3 weeks of progress made to the project.
 
-Any suggestions that would help the documentation to be easier to follow?3 responses
+### Any suggestions that would help the documentation to be easier to follow? 3 responses
 1. Documentation of the API's.
 While progress has been made on the project itself, there has been no update to the documentation readme (as of this survey-entry) for 18 days.
 Spent most of my time going through the project Repo and source-files to learn about the project, rather than reading the documentation.
