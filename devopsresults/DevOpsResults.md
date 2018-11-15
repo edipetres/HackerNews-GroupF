@@ -1,4 +1,4 @@
-#UFO - DevOps Questionnaire
+# UFO - DevOps Questionnaire
 
 Group members also found in primary repo ReadMe
 
@@ -59,4 +59,4 @@ More insight into choices and decisions, why what tools was used vs. other tools
 ![alt text](https://github.com/DarkSideMatters/UFO/blob/master/chart4.png)
 
 
-######Edmond,Zygi,Emil,Florent,Plamen
+###### Edmond,Zygi,Emil,Florent,Plamen
