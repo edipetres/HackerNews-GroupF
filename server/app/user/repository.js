@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-
 const User = mongoose.model("User");
+const logger = require('../../utilities/logger')
 
 const saveUser = (data) => {
   const user = new User(data);
@@ -11,7 +11,9 @@ const saveUser = (data) => {
 const loginUser = async data => {
   const {username, password} = data
   const savedUser = await User.findOne({username}) // get user from DB
-  if (!savedUser) throw new Error('Username not found:', username);
+  if (!savedUser) {
+    return logger.info('User not found in loginUser with username: ' + username)
+  }
   
   const passwordMatch = savedUser.schema.methods.checkPass(savedUser.password, password)
   if (passwordMatch !== true) throw new Error('Username/password missmatch.')
