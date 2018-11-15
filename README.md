@@ -81,7 +81,7 @@ npm run test:unit
 | Backend         | Node.js, Express.js |                                                   |
 | CI/CD pipeline  | CircleCI               | https://circleci.com/gh/edipetres/HackerNewsG7    |
 | Version Control | Github                 | https://github.com/edipetres/HackerNewsG7         |
-| Deployment      | Digital Ocean          | Both back and front-end lives in the same project |
+| Deployment      | AWS          | Using AWS, we have changed our deployment strategy |
 | Database        | Mongodb                | https://mlab.com/                                 |
 |  | Backend Template Project              | [express-mongo-example](https://github.com/FortechRomania/express-mongo-example-project/blob/master/src/app/users/router.js) |
 | | Keys, env vars, credentials and how-tos  | [Google docs](https://docs.google.com/document/d/1N4INXHLhk8Y1QuXl42DNHAigksTOLjEuTCz06kRt8Zw/edit) | 
@@ -97,7 +97,7 @@ Find the pipeline configuration file [here](.circleci/config.yml)
 3. [x] Build production code
 4. [x] Deploy frontend to AWS S3
 5. [x] Deploy backend API to AWS ElasticBeanstalk
-6. [ ] Release version on Github? - we haven't decided if we want to do this manually, or to be part of the pipeline.
+6. [x] Release version on Github - We have chosen to do manual releases.
 
 ### Environment variables
 
