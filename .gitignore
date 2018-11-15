@@ -6,6 +6,9 @@ prod-server.js
 /tests/e2e/reports/
 selenium-debug.log
 
+/devopsresults/
+DevOpsResults.md
+
 # local env files
 .env.local
 .env.*.local
