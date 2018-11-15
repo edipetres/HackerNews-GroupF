@@ -23,7 +23,7 @@ const storySchema = new Schema({
   },
   voteCount: {
     type: Number,
-    required: true
+    
   }
 }, {
   timestamps: true,
