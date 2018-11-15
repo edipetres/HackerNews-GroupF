@@ -75,7 +75,10 @@ export default {
                 })
                 .then(function (response) {
                     const token = response.data.token
-
+                    const votes = response.data.votes
+                    const cvotes = response.data.votes
+                    localStorage.setItem("cvotes", JSON.stringify(cvotes))
+                    localStorage.setItem("votes", JSON.stringify(votes))
                     localStorage.setItem("token", token)
                     vm.$router.push("/")
                 })

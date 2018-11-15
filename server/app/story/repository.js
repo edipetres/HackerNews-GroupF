@@ -3,6 +3,7 @@ require('../user/model')
 const mongoose = require( "mongoose" );
 
 const Story = mongoose.model( "Story" );
+const User = mongoose.model( "User" );
 // const User = mongoose.model( "User" );
 
 const createStory = async ( data ) => {
@@ -20,10 +21,12 @@ const findStory = async (id) => {
     return await Story.find({sequenceId: id});
 }
 
-const findDetails = ( id ) => Story.findOne( { _id: id } );
+const findDetails = ( id ) => Story.findOne( { sequenceId: id } );
 
-const vote = async (storyId) => {
-    return await Story.findOneAndUpdate({_id: storyId}, {$inc: {voteCount: 1}})
+const vote = async (storyId, user) => {
+    //User.findOneAndUpdate({username: user}, {$push: {votedStories: storyId}})
+     const votes = await User.findOneAndUpdate({username: user}, {$push: {votedStories: storyId}})
+     return await Story.findOneAndUpdate({sequenceId: storyId}, {$inc: {voteCount: 1}})
 }
 
 module.exports = {

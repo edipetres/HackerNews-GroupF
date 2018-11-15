@@ -70,7 +70,7 @@
 // @ is an alias to /src
 import Header from "@/components/Home/Header.vue";
 import StoryComment from "@/components/Comments/StoryComment.vue";
-import {timeSince} from '../assets/helper.js'
+import { timeSince } from "../assets/helper.js";
 
 export default {
   name: "storycomments",
@@ -78,7 +78,7 @@ export default {
     Header,
     StoryComment
   },
-  data: function () {
+  data: function() {
     return {
       voted: false,
       storyData: {},
@@ -87,54 +87,77 @@ export default {
     };
   },
   created() {
-
     this.fetchStoryComments();
+    
   },
   methods: {
-    timeSince,
-    vote: function () {
-      this.$http.post('/story/vote/' + this.storyData._id, {
-          token: localStorage.getItem('token')
-        })
+    fetchStoryComments: function() {
+      this.$http
+        .get("/comment/story/" + this.$route.query.id)
         .then(response => {
-          console.log("test test test");
-          this.storyData = response.data.payload.story
-          this.voted = true
+          this.storyData = response.data.payload.story[0];
+          this.commentData = response.data.payload.comments;
+          this.checkVote();
         })
         .catch(response => {
-          console.log('resp', response)
-
-        })
+          console.log("resp", response);
+        });
     },
-    postCommentParent: function () {
-      console.log(this.storyData.parentId);
-      this.$http.post('/post', {
-          token: localStorage.getItem('token'),
+    timeSince,
+    checkVote: function(){
+      if(localStorage.getItem("votes")){
+        const votes =  JSON.parse(localStorage.getItem("votes"));
+        if(votes.includes(this.storyData.sequenceId)){
+          this.voted = true;
+        }
+      } 
+    }, 
+    vote: function() {
+      if (localStorage.getItem("token")) {
+        this.$http
+          .post("/story/vote/" + this.storyData.sequenceId, {
+            token: localStorage.getItem("token")
+          })
+          .then(response => {
+            this.storyData = response.data.payload.story;
+             const votes =  JSON.parse(localStorage.getItem("votes"));
+            votes.push(this.storyData.sequenceId);
+            localStorage.setItem("votes", JSON.stringify(votes));
+            this.voted = true;
+          })
+          .catch(response => {
+            console.log("resp", response);
+          });
+      } else {
+        this.$router.push("login");
+      }
+    },
+    postCommentParent: function() {
+      if (localStorage.getItem("token")) {
+        if(this.commentText){
+      this.$http
+        .post("/post", {
+          token: localStorage.getItem("token"),
           post_text: this.commentText,
           hanesst_id: 0,
           post_parent: this.storyData.sequenceId,
-          post_type: 'comment'
+          post_type: "comment"
         })
         .then(response => {
           this.commentData = response.data.payload.comments;
           this.$router.go(this.$router.currentRoute);
         })
         .catch(response => {
-          console.log('resp', response)
-
-        })
+          console.log("resp", response);
+        });
+        } else {
+          alert("The text field is empty!");
+        }
+        } else {
+        this.$router.push("login");
+      }
     },
-    fetchStoryComments: function () {
-      this.$http.get('/comment/story/' + this.$route.query.id)
-        .then(response => {
-          this.storyData = response.data.payload.story[0];
-          this.commentData = response.data.payload.comments;
-        })
-        .catch(response => {
-          console.log('resp', response)
-
-        })
-    }
+    
   },
   filters: {
     trimHost: url => {
@@ -172,6 +195,6 @@ export default {
         return hostname;
       }
     }
-  },
+  }
 };
 </script>

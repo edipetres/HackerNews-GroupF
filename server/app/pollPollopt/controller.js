@@ -1,4 +1,5 @@
 const repository = require('./repository')
+const logger = require('../../utilities/logger')
 
 exports.create = async function (req, res) {
   try {
@@ -16,7 +17,6 @@ exports.create = async function (req, res) {
     return res.success()
   }
   catch (err) {
-    console.log('Error saving pollPollopt', err)
-    return res.serverError('Could not save PollPollopt')
+    return res.serverError('Could not save PollPollopt' + err)
   }
 }

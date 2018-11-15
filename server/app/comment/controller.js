@@ -14,7 +14,16 @@ exports.newComments = async (req, res) => {
     res.serverError(err)
   }
 }
-
+exports.checkUserVoted = async (req, res) => {
+  try {
+    const vote = await repository.checkVote(req.body.hanesst_id)
+    return res.success({
+      answer: vote[0].voters.includes(req.body.username)
+    })
+  } catch (err) {
+    return res.serverError(err)
+  }
+}
 exports.create = async (req, res) => {
   try {
     const expectedPayload = {
@@ -24,11 +33,10 @@ exports.create = async (req, res) => {
       post_parent: 0
     }
     // username and password are encoded in the Authorization header
-    /* console.log("Here: ",req.body.username + " " + req.user.username); */
 
     const result = validator(expectedPayload, req.body, ['post_text', 'hanesst_id', 'username', 'post_parent'], false)
     if (result.success !== true) {
-      logger.error('Failed to process following request:', req.body)
+      logger.error('Failed to process following request:' + req.body)
       return res.preconditionFailed(result.errorMessage)
     }
 
@@ -43,7 +51,7 @@ exports.create = async (req, res) => {
     const savedComment = await commentRepository.create(comment)
     return res.success(extractObject(savedComment, ['_id', 'username']))
   } catch (err) {
-    res.serverError()
+    return res.serverError(err)
   }
 }
 
@@ -68,18 +76,20 @@ exports.getCommentsByStory = async (req, res) => {
 }
 
 exports.vote = async (req, res) => {
+  
   const commentId = req.params.id
   const validationResult = validateId(commentId)
+  
   if (validationResult.success !== true) {
     return res.preconditionFailed(validationResult.errorMessage)
   }
-  
+  console.log(commentId, req.body.username)
   try {
-    const updatedComment = await commentRepository.vote(commentId)
+    const updatedComment = await commentRepository.vote(commentId, req.body.username)
     res.success({
       comment: updatedComment
     })
   } catch (err) {
-    logger.error("Error message in app.controller" + err.message)
+    return res.serverError(err)
   }
 }

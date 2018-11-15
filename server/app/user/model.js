@@ -13,6 +13,14 @@ const userSchema = new Schema({
     required: true,
     minlength: 6
   },
+  votedStories:{
+    type: Array,
+    required: false
+  },
+  votedComments:{
+    type: Array,
+    required: false
+  }
 }, {
   timestamps: true,
 });

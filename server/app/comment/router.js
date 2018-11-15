@@ -11,5 +11,6 @@ router.post('/', controller.create);
 router.get('/new', controller.newComments );
 router.get('/story/:id', controller.getCommentsByStory)
 router.post('/vote/:id', validateUser, controller.vote)
+router.post('/voted', validateUser, controller.checkUserVoted)
 
 module.exports = router;

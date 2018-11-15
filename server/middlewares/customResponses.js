@@ -1,4 +1,4 @@
-const logger = console
+const logger = require('../utilities/logger')
 
 const customResponses = {
   success(payload) {
@@ -18,7 +18,7 @@ const customResponses = {
 
   preconditionFailed(customError) {
     const errorMessage = customError || "precondition_failed"
-    logger.error('Precondition failed:', errorMessage)
+    logger.error('Precondition failed:' + errorMessage)
     
     return this.status(412).json({
       success: false,
