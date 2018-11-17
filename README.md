@@ -150,6 +150,12 @@ It is important to allow all inbound traffic to the server, otherwise our reques
 
 ![Inbound traffic custom TCP rule](docs/ec2-custom-tcp-rule.png)
 
+## Graphs by the Simulator
+
+[Latest sent hannest_ids](http://46.101.225.71/chart.svg)
+[Error responses](http://46.101.225.71/error_chart.svg)
+[Response times](http://104.248.252.68/)
+
 ## Database schema
 
 We drafted the following sketch for the database schema for our MongoDB.
