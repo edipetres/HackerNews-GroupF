@@ -12,9 +12,7 @@ const createStory = async ( data ) => {
 };
 
 const getStories = async () => {
-    const storyLimit = 30
-    const stories = await Story.find({}).sort({createdAt: -1}).limit(storyLimit)
-    return stories
+    return await Story.find().limit(30).sort({$natural: -1})
 }
 
 const findStory = async (id) => {

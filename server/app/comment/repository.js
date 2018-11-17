@@ -3,7 +3,7 @@ const Comment = mongoose.model('Comment')
 const User = mongoose.model('User')
 // return list of latest comments and their corresponding stories
 exports.getNewComments = async () =>  {
-  return await Comment.find().sort({createdAt: -1}).limit(30)
+  return await Comment.find().limit(30).sort({$natural:-1})
 }
 
 exports.create = async (data) => {
