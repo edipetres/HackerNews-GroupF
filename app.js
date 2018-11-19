@@ -4,9 +4,6 @@ const app = express()
 const port = 3000
 const logger = require('./server/utilities/logger')
 
-const ebHealth = require('eb-healthd-middleware');
-app.use(ebHealth({}));
-
 const customResponses = require('./server/middlewares/customResponses')
 
 const status = require('./server/status')
