@@ -63,7 +63,7 @@ const customResponses = {
   },
 
   serverError(error) {
-    logger.error(error)
+    logger.error('Server error: ' + error)
     return this.status(503).json({
       success: false,
       error: "server_error",
