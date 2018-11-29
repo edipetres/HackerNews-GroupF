@@ -5,6 +5,9 @@ import Login from './views/Login.vue'
 import NewComments from './views/NewComments.vue'
 import StoryComments from './views/StoryComments.vue'
 import Submit from './views/Submit.vue'
+import Ask from './views/Ask.vue'
+import Show from './views/Show.vue'
+import Jobs from './views/Jobs.vue'
 
 Vue.use(Router)
 
@@ -38,6 +41,18 @@ export default new Router({
     {
       path: '/submit',
       component: Submit
+    },
+    { 
+      path: '/show',
+      component: Show
+    },
+    {
+      path: '/ask',
+      component: Ask
+    },
+    {
+      path: '/jobs',
+      component: Jobs
     }
   ]
 })
