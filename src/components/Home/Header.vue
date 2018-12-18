@@ -47,7 +47,7 @@ export default {
             }
         },
         onLogout() {
-            //Currently clears the whole localStorage, be specific if you want to save data.
+            //Currently clears the whole localStorage, be specific if you want to save data..
             localStorage.clear()
             this.username = ''
         },
@@ -64,3 +64,4 @@ export default {
 
 .default-curser {cursor: default;}
 </style>
+
