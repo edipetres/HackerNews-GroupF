@@ -371,8 +371,7 @@ Implementing a pipeline is one of those things that require an early investment 
 
 Since services sold by cloud service providers offer everything and have a solution for most of the developer’s needs, it is easy to believe they do not have any disadvantages. Our group was certainly in this belief until specific requirements came up for our system that were not compatible with these technologies. Lessons are learned that these services will not work for everything and the use case needs to be properly analysed.
 
-### One more important thing we learned comes here
-##### Handling large quantity of data and traffic
+### Handling large quantity of data and traffic
 
 This was the most important thing we learned in this project, since last semester we talked about how we should be conscious of our choices when it comes to technologies. That might be Databases, language, frameworks and so on.
 
